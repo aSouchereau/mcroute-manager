@@ -27,7 +27,7 @@ Route::group(['as' => 'groups.', 'prefix' => 'groups'], function () {
    Route::get('', [GroupController::class, 'index'])->name('index');
 });
 
-Route::group(['as' => 'routes.', 'prefix'], function () {
+Route::group(['as' => 'routes.', 'prefix' => 'routes'], function () {
     Route::get('create', [RouteController::class, 'create'])->name('create');
     Route::post('', [RouteController::class, 'store'])->name('store');
     Route::delete('{route}', [RouteController::class, 'destroy'])->name('delete');
