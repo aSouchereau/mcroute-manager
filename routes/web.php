@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home.index');
+Route::get('/', [HomeController::class, 'index'])->name('index');
+
+Route::group(['as' => 'groups.', 'prefix' => 'groups'], function () {
+   Route::get('create', [GroupController::class, 'create'])->name('groups.create');
+   Route::post('', [GroupController::class, 'store'])->name('groups.store');
+   Route::get('{group}/edit', [GroupController::class, 'edit'])->name('groups.edit');
+   Route::patch('{group}', [GroupController::class, 'update'])->name('groups.update');
+   Route::get('', [GroupController::class, 'index'])->name('groups.index');
 });
