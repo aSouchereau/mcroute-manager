@@ -10,12 +10,13 @@
         <!-- Search by address, host, nickname, or group name -->
 
         @foreach($groups as $group)
-            {{$group->name}} <br>
-            Routes:
-            @foreach($group->routes() as $route)
-            {{$route->nickname}}
-            {{$route->host}}
+            <h3>{{$group->name}}</h3>
+            @foreach($group->routes as $route)
+            Route Name: {{$route->nickname}}<br>
+            Route Host: {{$route->host}}<br>
+            <br>
             @endforeach
+            <br>
         @endforeach
     </div>
 </section>
