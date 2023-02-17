@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::group(['as' => 'groups.', 'prefix' => 'groups'], function () {
-   Route::get('create', [GroupController::class, 'create'])->name('groups.create');
-   Route::post('', [GroupController::class, 'store'])->name('groups.store');
-   Route::get('{group}/edit', [GroupController::class, 'edit'])->name('groups.edit');
-   Route::patch('{group}', [GroupController::class, 'update'])->name('groups.update');
-   Route::get('', [GroupController::class, 'index'])->name('groups.index');
+   Route::get('create', [GroupController::class, 'create'])->name('create');
+   Route::post('', [GroupController::class, 'store'])->name('store');
+   Route::get('{group}/edit', [GroupController::class, 'edit'])->name('edit');
+   Route::patch('{group}', [GroupController::class, 'update'])->name('update');
+   Route::delete('{group}', [GroupController::class, 'destroy'])->name('delete');
+   Route::get('', [GroupController::class, 'index'])->name('index');
+});
+
+Route::group(['as' => 'routes.', 'prefix'], function () {
+    Route::get('create', [RouteController::class, 'create'])->name('create');
+    Route::post('', [RouteController::class, 'store'])->name('store');
+    Route::delete('{route}', [RouteController::class, 'destroy'])->name('delete');
+    Route::get('', [RouteController::class, 'index'])->name('index');
 });
