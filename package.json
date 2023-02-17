@@ -2,7 +2,9 @@
     "private": true,
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "sail": "./vendor/bin/sail up",
+        "start": "docker start mcroute-manager-mailpit-1 mcroute-manager-meilisearch-1 mcroute-manager-selenium-1 mcroute-manager-redis-1 mcroute-manager-laravel.test-1"
     },
     "devDependencies": {
         "axios": "^1.1.2",
