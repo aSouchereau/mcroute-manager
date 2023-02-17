@@ -24,7 +24,7 @@ class GroupRequest extends FormRequest
         return [
             'name' => ['required', 'min:2', 'unique:groups,name,'. $this->segment(2)],
             'description' => 'required',
-            'img_url' => 'required'
+            'image_url' => 'required'
         ];
     }
 }
