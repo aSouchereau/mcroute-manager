@@ -6,23 +6,25 @@ use App\Models\Group;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class GroupController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index(): View
     {
-        //
+     $groups = Group::all();
+     return view('groups.index', compact('groups'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): Response
+    public function create(): View
     {
-        //
+        return view('groups.create');
     }
 
     /**
@@ -30,23 +32,18 @@ class GroupController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Group $group): Response
-    {
-        //
+        $formData = $request->all();
+        Group::create($formData);
+        return redirect('groups');
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Group $group): Response
+    public function edit(Group $group): View
     {
-        //
+        $group = Group::findOrFail($group);
+        return view('groups.edit', compact('group'));
     }
 
     /**
@@ -54,7 +51,11 @@ class GroupController extends Controller
      */
     public function update(Request $request, Group $group): RedirectResponse
     {
-        //
+        $formData = $request->all();
+        $group = Group::findOrFail($group);
+        $group->update($formData);
+
+        return redirect('groups');
     }
 
     /**
@@ -62,6 +63,9 @@ class GroupController extends Controller
      */
     public function destroy(Group $group): RedirectResponse
     {
-        //
+        $group = Group::findOrFail($group);
+        $group->delete();
+
+        return redirect('groups');
     }
 }
