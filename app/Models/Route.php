@@ -11,9 +11,10 @@ class Route extends Model
 
     protected $fillable = [
         "nickname",
-        "domain",
+        "domain_name",
         "host",
-        "group_id"
+        "group_id",
+        "enabled"
     ];
 
     public function group() {
