@@ -9,6 +9,12 @@ class Group extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        "name",
+        "description",
+        "image_url"
+    ];
+
     public function routes() {
         return $this->hasMany(Route::class);
     }
