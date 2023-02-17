@@ -1,11 +1,16 @@
 @extends('master')
 @section('content')
-    <h2>All Groups</h2>
-    @foreach ($groups as $group)
-        Group ID: {{ $group->id }}<br>
-        Group Name: {{ $group->name }}<br>
-        Description: {{ $group->description }}<br>
-        <a href="{{ action([\App\Http\Controllers\GroupController::class, 'edit'], $group->id) }}">[edit]</a><br>
-        <br>
+    <h2>All Routes</h2>
+    @foreach ($routes as $route)
+        Route ID: {{ $route->id }}<br>
+        Route Nickname: {{ $route->nickname }}<br>
+        Domain Name: {{ $route->domain_name }}<br>
+        Host Address: {{ $route->host }}<br>
+        Group ID: {{ $route->group_id }}<br>
+        @if($route->enabled)
+            enabled
+        @else
+            disabled
+        @endif
     @endforeach
 @endsection
