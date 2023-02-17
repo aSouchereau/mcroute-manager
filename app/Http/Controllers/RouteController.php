@@ -2,27 +2,31 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Group;
 use App\Models\Route;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\View\View;
 
 class RouteController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): Response
+    public function index(): View
     {
-        //
+        $routes = Route::all();
+        return view('routes.index', compact('routes'));
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create(): Response
+    public function create(): View
     {
-        //
+        $groups = Group::all();
+        return view('routes.create', compact('groups'));
     }
 
     /**
@@ -30,31 +34,11 @@ class RouteController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        //
-    }
+        $group = Group::findOrFail($request->group_id);
+        $route = new Route($request->all());
+        $group->routes()->save($route);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Route $route): Response
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Route $route): Response
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Route $route): RedirectResponse
-    {
-        //
+        return redirect('routes');
     }
 
     /**
@@ -62,6 +46,9 @@ class RouteController extends Controller
      */
     public function destroy(Route $route): RedirectResponse
     {
-        //
+        $route = Route::findOrFail($route);
+        $route->delete();
+
+        return redirect('routes');
     }
 }
