@@ -51,4 +51,13 @@ class RouteController extends Controller
 
         return redirect('routes');
     }
+
+    /*
+     * Temporary edit method
+     */
+    public function edit(Route $route) {
+        $route = Route::findOrfail($route);
+
+        return view('routes.edit', compact('route'));
+    }
 }
