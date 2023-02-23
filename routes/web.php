@@ -30,6 +30,7 @@ Route::group(['as' => 'groups.', 'prefix' => 'groups'], function () {
 Route::group(['as' => 'routes.', 'prefix' => 'routes'], function () {
     Route::get('create', [RouteController::class, 'create'])->name('create');
     Route::post('', [RouteController::class, 'store'])->name('store');
+    Route::patch('', [RouteController::class, 'store'])->name('update');
     Route::delete('{route}', [RouteController::class, 'destroy'])->name('delete');
     Route::get('', [RouteController::class, 'index'])->name('index');
 });
