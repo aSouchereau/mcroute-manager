@@ -1,15 +1,15 @@
 @extends('master')
 @section('content')
-    <h1>Edit Group</h1>
-    <form method="POST" action="{{ route('groups.update', $group->id) }}">
+    <h1>Edit Route</h1>
+    <form method="POST" action="{{ route('routes.update', $route->id) }}">
         @method('PATCH')
         @csrf
         <label for="name">Group Name:</label>
-        <input name="name" type="text" value="{{$group->name}}"><br>
+        <input name="name" type="text" value="{{$route->name}}"><br>
         <label for="description">Group Description:</label>
-        <input name="description" type="text" value="{{$group->description}}"><br>
+        <input name="description" type="text" value="{{$route->description}}"><br>
         <label for="image">Group Background Image:</label>
-        <input name="image" type="text" value="{{$group->image_url}}">
+        <input name="image" type="text" value="{{$route->image_url}}">
         <input type="submit" value="Submit"><br>
     </form>
 
