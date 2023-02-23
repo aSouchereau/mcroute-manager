@@ -4,12 +4,12 @@
     <form method="POST" action="{{ route('routes.update', $route->id) }}">
         @method('PATCH')
         @csrf
-        <label for="name">Group Name:</label>
-        <input name="name" type="text" value="{{$route->name}}"><br>
-        <label for="description">Group Description:</label>
-        <input name="description" type="text" value="{{$route->description}}"><br>
-        <label for="image">Group Background Image:</label>
-        <input name="image" type="text" value="{{$route->image_url}}">
+        <label for="name">Route Nickname: </label>
+        <input name="name" type="text" value="{{$route->nickname}}"><br>
+        <label for="description">Domain: </label>
+        <input name="description" type="text" value="{{$route->domain_name}}"><br>
+        <label for="image">Host: </label>
+        <input name="image" type="text" value="{{$route->host}}">
         <input type="submit" value="Submit"><br>
     </form>
 
