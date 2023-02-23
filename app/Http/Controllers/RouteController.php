@@ -55,7 +55,7 @@ class RouteController extends Controller
     /*
      * Temporary edit method
      */
-    public function edit(Route $route) {
+    public function edit($route) {
         $route = Route::findOrfail($route);
 
         return view('routes.edit', compact('route'));
