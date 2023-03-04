@@ -1,0 +1,14 @@
+@charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700&family=Roboto+Slab:wght@700&display=swap');
+
+:root {
+    --white: #ffff;
+    --light-grey: #C6C4C4;
+    --dark-grey: #637381;
+    --black: #212B36;
+    --primary: #3056D3;
+
+    --bg-light-grey: #f2f2f2;
+    --shadow: rgba(0,0,0,0.12);
+}

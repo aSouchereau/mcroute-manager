@@ -5,7 +5,7 @@
         <title>MC Route Manager</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="{{asset('css/reset.css')}}">
-        <link rel="stylesheet" href="{{asset('css/colors.css')}}">
+        <link rel="stylesheet" href="{{asset('css/utils.css')}}">
         <link rel="stylesheet" href="{{asset('css/header.css')}}">
         <link rel="stylesheet" href="{{asset('css/main.css')}}">
     </head>
