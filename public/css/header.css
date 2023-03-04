@@ -32,7 +32,7 @@ header#main {
 }
 
 .main-nav-item {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--body-font);
     font-size: 0.87rem;
     font-weight: 700;
     color: var(--dark-grey);

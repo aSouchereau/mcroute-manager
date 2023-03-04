@@ -11,14 +11,14 @@ section#content {
 }
 
 h1 {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--body-font);
     font-weight: 600;
     font-size: 1.12rem;
     color: var(--black);
 }
 
 p {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--body-font);
     font-weight: 300;
     font-size: 0.87rem;
     color: var(--dark-grey);

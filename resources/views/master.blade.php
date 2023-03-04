@@ -4,10 +4,12 @@
         <meta charset="utf-8">
         <title>MC Route Manager</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        @section('scripts')
         <link rel="stylesheet" href="{{asset('css/reset.css')}}">
         <link rel="stylesheet" href="{{asset('css/utils.css')}}">
         <link rel="stylesheet" href="{{asset('css/header.css')}}">
         <link rel="stylesheet" href="{{asset('css/main.css')}}">
+        @show
     </head>
     <body style="margin: 0; background-color: var(--bg-light-grey);">
         <header id="main">

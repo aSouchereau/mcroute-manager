@@ -1,0 +1,20 @@
+header#home {
+    height: 60px;
+    border-bottom: 1px solid var(--light-grey);
+    margin-bottom: 8px;
+}
+
+#home-nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5rem;
+    height: 100%;
+}
+
+.home-nav-item {
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--dark-grey);
+}
