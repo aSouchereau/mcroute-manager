@@ -18,3 +18,7 @@ header#home {
     font-weight: 500;
     color: var(--dark-grey);
 }
+.home-nav-item.active {
+    color: var(--primary);
+    font-weight: 700;
+}

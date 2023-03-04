@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="{{asset('css/home.css')}}">
 @endsection
 @section('content')
-    <x-home-nav></x-home-nav>
+    <x-home-nav activeElm="1"></x-home-nav>
     <div>
         <h1>Routes</h1>
         <p>Map a source domain to a destination address</p>
