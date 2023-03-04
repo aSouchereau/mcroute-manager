@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('/', [RouteController::class, 'index'])->name('index');
 
 Route::group(['as' => 'groups.', 'prefix' => 'groups'], function () {
    Route::get('create', [GroupController::class, 'create'])->name('create');

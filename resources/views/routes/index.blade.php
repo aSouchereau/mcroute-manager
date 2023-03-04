@@ -1,5 +1,9 @@
 @extends('master')
 @section('content')
+    <div>
+        <h1>Routes</h1>
+        <p>Map a source domain to a destination address</p>
+    </div>
     <h2>All Routes</h2>
     @foreach ($routes as $route)
         Route ID: {{ $route->id }}<br>
