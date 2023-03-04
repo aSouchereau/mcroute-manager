@@ -7,10 +7,11 @@
         <link rel="stylesheet" href="{{asset('css/reset.css')}}">
         <link rel="stylesheet" href="{{asset('css/colors.css')}}">
         <link rel="stylesheet" href="{{asset('css/header.css')}}">
+        <link rel="stylesheet" href="{{asset('css/main.css')}}">
     </head>
     <body style="margin: 0; background-color: var(--bg-light-grey);">
         <header>
-            <nav id="main-nav">
+            <nav id="main-nav" class="container">
                 <a id="main-nav-logo" href="{{route('index')}}">
                     MC Route Manager
                 </a>
@@ -23,8 +24,10 @@
             </nav>
         </header>
 
-    <main>
-            @yield('content')
+        <main>
+            <section id="content" class="container">
+                @yield('content')
+            </section>
         </main>
         <footer>
         </footer>
