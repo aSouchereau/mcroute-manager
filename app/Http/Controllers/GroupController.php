@@ -41,7 +41,7 @@ class GroupController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Group $group): View
+    public function edit($group): View
     {
         $group = Group::findOrFail($group);
         return view('groups.edit', compact('group'));
