@@ -10,16 +10,28 @@
         <p>Map a source domain to a destination address</p>
     </div>
     <h2>All Routes</h2>
-    @foreach ($routes as $route)
-        Route ID: {{ $route->id }}<br>
-        Route Nickname: {{ $route->nickname }}<br>
-        Domain Name: {{ $route->domain_name }}<br>
-        Host Address: {{ $route->host }}<br>
-        Group ID: {{ $route->group_id }}<br>
-        @if($route->enabled)
-            enabled
-        @else
-            disabled
-        @endif
-    @endforeach
+    <table>
+        <thead>
+            <tr>
+                <th>nickname</th>
+                <th>source domain</th>
+                <th>destination</th>
+                <th>group</th>
+                <th>enabled</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach($routes as $route)
+            <tr>
+                <td>{{$route->nickname}}</td>
+                <td>{{$route->domain_name}}</td>
+                <td>{{$route->host}}</td>
+                <td>{{$route->group_id}}</td>
+                <td>@if($route->enabled) enabled @else disabled @endif</td>
+                <td>[edit]</td>
+            </tr>
+        @endforeach
+        </tbody>
+    </table>
 @endsection
