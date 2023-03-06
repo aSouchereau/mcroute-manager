@@ -9,8 +9,8 @@
         <h1>Routes</h1>
         <p>Map a source domain to a destination address</p>
     </div>
-    <h2>All Routes</h2>
-    <table>
+
+    <table class="home-resource-table">
         <thead>
             <tr>
                 <th>nickname</th>
