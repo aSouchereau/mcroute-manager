@@ -1,0 +1,27 @@
+:root {
+    --table-line-width: 1px;
+}
+
+.home-resource-table {
+    width: 100%;
+    border: var(--table-line-width) solid var(--light-grey);
+    border-radius: 8px;
+}
+
+.home-resource-table th {
+    padding: 8px 3rem;
+    text-transform: uppercase;
+    font-family: var(--body-font);
+    font-size: 0.75rem;
+    color: var(--dark-grey);
+    border-bottom: var(--table-line-width) solid var(--light-grey);
+}
+
+.home-resource-table tr {
+    border-bottom: var(--table-line-width) solid var(--light-grey);
+}
+
+.home-resource-table td {
+    padding: 0.9rem 1.25rem;
+    border-right: var(--table-line-width) solid var(--light-grey);
+}
