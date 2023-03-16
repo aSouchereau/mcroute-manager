@@ -61,14 +61,14 @@ RUN composer install --optimize-autoloader --no-interaction --no-progress
 # Expose the port nginx is reachable on
 EXPOSE 8080
 
-# Let supervisord start nginx & php-fpm
-CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
-
 # Copy Migration Scripts
 COPY config/scripts/run_migration.sh /usr/local/bin/run_migration.sh
 
 # Run Migrations
 CMD /usr/local/bin/run_migration.sh
+
+# Let supervisord start nginx & php-fpm
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Configure a healthcheck to validate that everything is up&running
 HEALTHCHECK --timeout=10s CMD curl --silent --fail http://127.0.0.1:8080/fpm-ping
