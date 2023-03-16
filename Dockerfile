@@ -24,6 +24,7 @@ RUN apk add --no-cache \
   php81-session \
   php81-xml \
   php81-xmlreader \
+  php81-tokenizer \
   supervisor
 
 # Install composer from the official image
