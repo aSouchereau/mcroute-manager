@@ -56,7 +56,12 @@ USER nobody
 COPY --chown=nobody src /var/www/html/
 
 # Run composer install to install the dependencies
-RUN composer install --optimize-autoloader --no-interaction --no-progress
+# Run Migrations on the database
+RUN composer install --optimize-autoloader --no-interaction --no-progress && \
+    php artisan down && \
+    php artisan migrate --force && \
+    php artisan storage:link && \
+    php artisan droit:run && \
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
