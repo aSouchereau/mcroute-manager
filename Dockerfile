@@ -65,7 +65,7 @@ EXPOSE 8080
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisor/conf.d/supervisord.conf"]
 
 # Copy Migration Scripts
-COPY config/scripts/migrate.sh /usr/local/bin/run_migration.sh
+COPY config/scripts/run_migration.sh /usr/local/bin/run_migration.sh
 
 # Run Migrations
 CMD /usr/local/bin/run_migration.sh
