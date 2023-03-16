@@ -25,6 +25,7 @@ RUN apk add --no-cache \
   php81-session \
   php81-xml \
   php81-xmlreader \
+  php81-xmlwriter \
   php81-pdo_mysql \
   php81-pdo_sqlite \
   php81-tokenizer \
