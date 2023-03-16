@@ -5,9 +5,16 @@
 @endsection
 @section('content')
     <x-home-nav activeElm="1"></x-home-nav>
-    <div>
-        <h1>Routes</h1>
-        <p>Map a source domain to a destination address</p>
+    <div class="content-header">
+        <div>
+            <h1>Routes</h1>
+            <p>Map a source domain to a destination address</p>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" id="create-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                New Route
+            </button>
+        </div>
     </div>
 
     <table class="home-resource-table">
@@ -29,9 +36,11 @@
                 <td>{{$route->host}}</td>
                 <td>{{$route->group_id}}</td>
                 <td>@if($route->enabled) enabled @else disabled @endif</td>
-                <td>[edit]</td>
+                <td>edit</td>
             </tr>
         @endforeach
         </tbody>
     </table>
 @endsection
+
+<x-route-create-modal></x-route-create-modal>

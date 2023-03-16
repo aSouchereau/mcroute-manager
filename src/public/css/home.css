@@ -22,3 +22,14 @@ header#home {
     color: var(--primary);
     font-weight: 700;
 }
+
+.content-header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.content-header #create-button {
+    font-family: var(--body-font);
+    font-size: 0.8rem;
+}
