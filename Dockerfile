@@ -13,6 +13,8 @@ RUN apk add --no-cache \
   php81-ctype \
   php81-curl \
   php81-dom \
+  php81-fileinfo \
+  php81-filter \
   php81-fpm \
   php81-gd \
   php81-intl \
@@ -24,6 +26,8 @@ RUN apk add --no-cache \
   php81-session \
   php81-xml \
   php81-xmlreader \
+  php8-pdo_mysql \
+  php8-pdo_sqlite \
   php81-tokenizer \
   supervisor
 
