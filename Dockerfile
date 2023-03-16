@@ -26,6 +26,9 @@ RUN apk add --no-cache \
   php81-xmlreader \
   supervisor
 
+# Install composer from the official image
+COPY --from=composer /usr/bin/composer /usr/bin/composer
+
 # Configure nginx - http
 COPY config/nginx.conf /etc/nginx/nginx.conf
 # Configure nginx - default server
@@ -46,6 +49,9 @@ USER nobody
 
 # Add application
 COPY --chown=nobody src /var/www/html/
+
+# Run composer install to install the dependencies
+RUN composer install --optimize-autoloader --no-interaction --no-progress
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
