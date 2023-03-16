@@ -22,5 +22,5 @@ build:       # This job runs in the build stage, which runs first.
     - docker:dind
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER https://registry.alexsouch.com/v2/ --password-stdin
-    - docker build -t $CI_REGISTRY_IMAGE .
-    - docker push $CI_REGISTRY_IMAGE
+    - docker build -t registry.alexsouch.com/souch/mcroute-manager .
+    - docker push registry.alexsouch.com/souch/mcroute-manager
