@@ -23,3 +23,9 @@ p {
     font-size: 0.87rem;
     color: var(--dark-grey);
 }
+
+.btn {
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    font-weight: 500;
+}

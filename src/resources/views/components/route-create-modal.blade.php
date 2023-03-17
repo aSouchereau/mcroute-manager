@@ -8,15 +8,32 @@
             <form method="POST" action="{{ action([\App\Http\Controllers\RouteController::class, 'store']) }}">
                 <div class="modal-body">
                     {{  csrf_field() }}
-                    <label for="nickname">Route Nickname:</label> <input name="nickname" type="text"><br>
-                    <label for="domain_name">Domain Name:</label> <input name="domain_name" type="text"><br>
-                    <label for="host">Host Address:</label><input name="host" type="text"><br>
-                    <label for="group_id">Group</label>
-                    <select name="group_id">
-{{--                        @foreach($groups as $group)--}}
-{{--                            <option value="{{$group->id}}">{{ $group->name }}</option>--}}
-{{--                        @endforeach--}}
-                    </select><br>
+                    <div class="mb-3">
+                        <label class="form-label" for="nickname">Nickname:</label>
+                        <input class="form-control" name="nickname" id="nickname" type="text">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="domain_name">Domain Name:</label>
+                        <input class="form-control" name="domain_name" id="domain_name" type="text">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="host">Host Address:</label>
+                        <input class="form-control" name="host" id="host" type="text">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="group_id">Group</label>
+                        <select class="form-select" name="group_id" id="group_id">
+                            <option>Select Group</option>
+                            {{--                        @foreach($groups as $group)--}}
+                            {{--                            <option value="{{$group->id}}">{{ $group->name }}</option>--}}
+                            {{--                        @endforeach--}}
+                        </select>
+                    </div>
+
+
                     <input type="hidden" name="enabled" value="1">
                     <br>
                     @if ($errors->any())
@@ -25,9 +42,9 @@
                         @endforeach
                     @endif
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <input type="submit" class="btn btn-primary" value="Create">
+                <div class="modal-footer row">
+                    <button type="button" class="btn btn-outline-secondary col-6" data-bs-dismiss="modal">Cancel</button>
+                    <input type="submit" class="btn btn-primary col-6" value="Create">
                 </div>
             </form>
         </div>

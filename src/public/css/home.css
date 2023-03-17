@@ -33,3 +33,21 @@ header#home {
     font-family: var(--body-font);
     font-size: 0.8rem;
 }
+
+label.form-label {
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+input.form-control {
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
+
+select.form-select {
+    font-family: var(--body-font);
+    font-size: 0.9rem;
+    font-weight: 400;
+}
