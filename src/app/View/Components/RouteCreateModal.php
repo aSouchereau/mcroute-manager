@@ -5,15 +5,14 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
+use App\Models\Group;
 
 class RouteCreateModal extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
-    {
-        //
+    public function __construct() {
     }
 
     /**
@@ -21,6 +20,7 @@ class RouteCreateModal extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.route-create-modal');
+        $groups = Group::all();
+        return view('components.route-create-modal', compact('groups'));
     }
 }
