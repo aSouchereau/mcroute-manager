@@ -11,11 +11,10 @@ prepare_job:
       when: never                                             # Do not run this job when a tag is created manually
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH             # Run this job when commits are pushed or merged to the default branch
   variables:
-    VERSION_NUMBER: $(grep -E -o "[0-9]+?\.[0-9]+?\.[0-9]+?" ${CI_PROJECT_DIRECTORY}/mcroute-manager/VERSION))
+    VERSION_NUMBER: $(grep -E -o "[0-9]+?\.[0-9]+?\.[0-9]+?" ${CI_PROJECT_DIRECTORY}/mcroute-manager/VERSION)
   script:
     - echo "EXTRA_DESCRIPTION= " >> variables.env  # Generate the EXTRA_DESCRIPTION and TAG environment variables
     - echo "TAG=v$VERSION_NUMBER" >> variables.env             # and append to the variables.env file
-    - echo $TAG                                                # Echo Tag for debugging
   artifacts:
     reports:
       dotenv: variables.env                                   # Use artifacts:reports:dotenv to expose the variables to other jobs
