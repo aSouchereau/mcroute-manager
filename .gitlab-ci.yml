@@ -16,11 +16,33 @@
 # This specific template is located at:
 # https://gitlab.com/gitlab-org/gitlab/-/blob/master/lib/gitlab/ci/templates/Getting-Started.gitlab-ci.yml
 
+stages:
+  - build
+  - release
+
 build:       # This job runs in the build stage, which runs first.
+  stage: build
   image: docker
   services:
     - docker:dind
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER https://registry.alexsouch.com/v2/ --password-stdin
     - docker build -t registry.alexsouch.com/souch/mcroute-manager .
-    - docker push registry.alexsouch.com/souch/mcroute-manager
+
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never                                  # Do not run this job when a tag is created manually
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH  # Run this job when commits are pushed or merged to the default branch
+  script:
+    - echo "running release_job for $TAG"
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER https://registry.alexsouch.com/v2/ --password-stdin
+    - docker push registry.alexsouch.com/souch/mcroute-manager:$TAG
+  release:                                         # See https://docs.gitlab.com/ee/ci/yaml/#release for available properties
+    tag_name: 'v0.$CI_PIPELINE_IID'                # The version is incremented per pipeline.
+    description: 'v0.$CI_PIPELINE_IID'
+    ref: '$CI_COMMIT_SHA'                          # The tag is created from the pipeline SHA.
+
+
