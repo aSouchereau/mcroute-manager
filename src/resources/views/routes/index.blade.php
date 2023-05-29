@@ -36,7 +36,7 @@
                 <td>{{$route->host}}</td>
                 <td>{{$route->group_id}}</td>
                 <td>@if($route->enabled) enabled @else disabled @endif</td>
-                <td>edit</td>
+                <td><x-edit-button tooltipName="Route" ></x-edit-button></td>
             </tr>
         @endforeach
         </tbody>
