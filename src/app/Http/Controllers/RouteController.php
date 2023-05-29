@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Group;
 use App\Models\Route;
+use App\Traits\RouteTrait;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -11,6 +12,8 @@ use Illuminate\View\View;
 
 class RouteController extends Controller
 {
+    use RouteTrait;
+
     /**
      * Display a listing of the resource.
      */
@@ -37,6 +40,7 @@ class RouteController extends Controller
         $group = Group::findOrFail($request->group_id);
         $route = new Route($request->all());
         $group->routes()->save($route);
+        $this->addRoute($route);
 
         return redirect('routes');
     }
