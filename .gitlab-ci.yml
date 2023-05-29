@@ -49,7 +49,7 @@ build_job:
   variables:
     IMAGE_TAG: http://registry.alexsouch.com/souch/mcroute-manager:$TAG
   script:
-    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER https://registry.alexsouch.com/v2/ --password-stdin
     - docker build -t $IMAGE_TAG .
     - docker push $IMAGE_TAG
 
