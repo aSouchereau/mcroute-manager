@@ -29,9 +29,28 @@ build:       # This job runs in the build stage, which runs first.
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER https://registry.alexsouch.com/v2/ --password-stdin
     - docker build -t registry.alexsouch.com/souch/mcroute-manager .
 
-release:
+
+prepare_job:
+  stage: prepare                                              # This stage must run before the release stage
+  rules:
+    - if: $CI_COMMIT_TAG
+      when: never                                             # Do not run this job when a tag is created manually
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH             # Run this job when commits are pushed or merged to the default branch
+  script:
+    - echo "EXTRA_DESCRIPTION=some message" >> variables.env  # Generate the EXTRA_DESCRIPTION and TAG environment variables
+    - echo "TAG=v$(cat VERSION)" >> variables.env             # and append to the variables.env file
+  artifacts:
+    reports:
+      dotenv: variables.env                                   # Use artifacts:reports:dotenv to expose the variables to other jobs
+
+release_job:
   stage: release
   image: registry.gitlab.com/gitlab-org/release-cli:latest
+  services:
+  - docker:dind
+  needs:
+    - job: prepare_job
+      artifacts: true
   rules:
     - if: $CI_COMMIT_TAG
       when: never                                  # Do not run this job when a tag is created manually
@@ -40,9 +59,10 @@ release:
     - echo "running release_job for $TAG"
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER https://registry.alexsouch.com/v2/ --password-stdin
     - docker push registry.alexsouch.com/souch/mcroute-manager:$TAG
-  release:                                         # See https://docs.gitlab.com/ee/ci/yaml/#release for available properties
-    tag_name: 'v0.$CI_PIPELINE_IID'                # The version is incremented per pipeline.
-    description: 'v0.$CI_PIPELINE_IID'
-    ref: '$CI_COMMIT_SHA'                          # The tag is created from the pipeline SHA.
+  release:
+    name: 'Release $TAG'
+    description: 'Created using the release-cli $EXTRA_DESCRIPTION'  # $EXTRA_DESCRIPTION and the $TAG
+    tag_name: '$TAG'                                                 # variables must be defined elsewhere
+    ref: '$CI_COMMIT_SHA'                                            # in the pipeline. For example, in the
 
 
