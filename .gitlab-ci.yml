@@ -18,9 +18,10 @@
 
 stages:
   - build
+  - prepare
   - release
 
-build:       # This job runs in the build stage, which runs first.
+build_job:       # This job runs in the build stage, which runs first.
   stage: build
   image: docker
   services:
