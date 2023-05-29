@@ -26,7 +26,7 @@
                     <td>{{$group->description}}</td>
                     <td>{{$group->routes->count()}}</td>
                     <td>enable</td>
-                    <td><a href="{{ action([\App\Http\Controllers\GroupController::class, 'edit'], $group->id) }}">[edit]</a></td>
+                    <td><x-edit-button tooltipName="Group"></x-edit-button></td>
                 </tr>
             @endforeach
             </tbody>
