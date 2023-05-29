@@ -30,7 +30,7 @@ prepare_job:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH             # Run this job when commits are pushed or merged to the default branch
   script:
     - echo "EXTRA_DESCRIPTION=some message" >> variables.env  # Generate the EXTRA_DESCRIPTION and TAG environment variables
-    - echo "TAG=v$(cat CI_PIPELINE_IID)" >> variables.env             # and append to the variables.env file
+    - echo "TAG=v0.1.$CI_PIPELINE_IID" >> variables.env             # and append to the variables.env file
   artifacts:
     reports:
       dotenv: variables.env                                   # Use artifacts:reports:dotenv to expose the variables to other jobs
