@@ -34,3 +34,12 @@
 .home-resource-table tr:last-of-type td {
     border-bottom: none;
 }
+
+/* Fixes plaintext shifting left-right when toggled*/
+.home-resource-table td .form-control-plaintext {
+    padding-left: 13px;
+}
+/* Fixes plaintext shifting up-down when toggled*/
+.home-resource-table td .form-control {
+    font-size: 0.85rem;
+}
