@@ -12,7 +12,8 @@ class EditButton extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public string $tooltipName
+        public string $tooltipName,
+        public int $fieldId
     ) {}
 
     /**
@@ -21,6 +22,7 @@ class EditButton extends Component
     public function render(): View|Closure|string
     {
         $name = $this->tooltipName;
-        return view('components.edit-button', compact('name'));
+        $fieldId = $this->fieldId;
+        return view('components.edit-button', compact('name','fieldId'));
     }
 }
