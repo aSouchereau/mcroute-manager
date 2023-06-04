@@ -31,12 +31,12 @@
         <tbody>
         @foreach($routes as $route)
             <tr>
-                <td>{{$route->nickname}}</td>
-                <td>{{$route->domain_name}}</td>
-                <td>{{$route->host}}</td>
-                <td>{{$route->group_id}}</td>
+                <td><input value="{{$route->nickname}}" class="form-control-plaintext" readonly data-form-id="{{$route->id}}" /></td>
+                <td><input value="{{$route->domain_name}}" class="form-control-plaintext" readonly data-form-id="{{$route->id}}" /></td>
+                <td><input value="{{$route->host}}" class="form-control-plaintext" readonly data-form-id="{{$route->id}}" /></td>
+                <td><input value="{{$route->group_id}}" class="form-control-plaintext" readonly data-form-id="{{$route->id}}" /></td>
                 <td>@if($route->enabled) enabled @else disabled @endif</td>
-                <td><x-edit-button tooltipName="Route" ></x-edit-button></td>
+                <td><x-edit-button tooltipName="Route" fieldId="{{$route->id}}" ></x-edit-button></td>
             </tr>
         @endforeach
         </tbody>
