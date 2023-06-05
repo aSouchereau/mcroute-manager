@@ -30,6 +30,13 @@ header#main {
     font-size: 1.12rem;
     color: var(--black);
 }
+#main-nav-logo::after {
+    content: "beta";
+    font-family: var(--body-font);
+    font-size: 0.5em;
+    vertical-align: text-top;
+    color: var(--dark-grey);
+}
 
 .main-nav-item {
     font-family: var(--body-font);
