@@ -13,26 +13,29 @@
         <link rel="stylesheet" href="{{asset('css/tables.css')}}">
         @show
     </head>
-    <body style="margin: 0; background-color: var(--bg-light-grey);">
-        <header id="main">
-            <nav id="main-nav" class="container">
-                <a id="main-nav-logo" href="{{route('index')}}">
-                    MC Route Manager
-                </a>
-                <div id="main-nav-list">
-                    <a href="{{route('index')}}" class="main-nav-item">Home</a>
-                    <a href="{{route('index')}}" class="main-nav-item">Logs</a>
-                    <a href="{{route('index')}}" class="main-nav-item">Settings</a>
-                    <a href="{{route('index')}}" class="main-nav-item">Logout</a>
-                </div>
-            </nav>
-        </header>
+    <body>
+        <div id="app">
+            <header id="main">
+                <nav id="main-nav" class="container">
+                    <a id="main-nav-logo" href="{{route('index')}}">
+                        MC Route Manager
+                    </a>
+                    <div id="main-nav-list">
+                        <a href="{{route('index')}}" class="main-nav-item">Home</a>
+                        <a href="{{route('index')}}" class="main-nav-item">Logs</a>
+                        <a href="{{route('index')}}" class="main-nav-item">Settings</a>
+                        <a href="{{route('index')}}" class="main-nav-item">Logout</a>
+                    </div>
+                </nav>
+            </header>
 
-        <main>
-            <section id="content" class="container">
-                @yield('content')
-            </section>
-        </main>
+            <main>
+                <section id="content" class="container">
+                    @yield('content')
+                </section>
+            </main>
+        </div>
+
         <footer>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
