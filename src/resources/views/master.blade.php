@@ -37,6 +37,17 @@
         </div>
 
         <footer>
+            <div class="footer-content container">
+                <div class="footer-info-wrapper">
+                    <a id="main-nav-logo" href="{{route('index')}}">
+                        MC Route Manager
+                    </a>
+                    <span>v{{file_get_contents('./../VERSION')}}</span>
+                </div>
+                <div class="footer-links-wrapper">
+                    <a href="https://github.com/aSouchereau/mcroute-manager" class="link-primary">View Project on GitHub</a>
+                </div>
+            </div>
         </footer>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
