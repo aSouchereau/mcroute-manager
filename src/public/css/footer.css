@@ -1,0 +1,21 @@
+footer {
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    background-color: var(--white);
+    border-top: 1px solid var(--light-grey);
+    font-family: var(--body-font);
+    font-size: 0.8em;
+    box-shadow: 0 1px 4px var(--shadow);
+}
+
+div.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.footer-info-wrapper {
+    display: flex;
+    align-items: baseline;
+    gap: 2em;
+}
