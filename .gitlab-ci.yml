@@ -33,8 +33,8 @@ build_job:
     IMAGE_TAG: $IMAGE:$TAG
   script:
     - echo $CI_REGISTRY_PASSWORD | docker login -u $CI_REGISTRY_USER https://registry.alexsouch.com/v2/ --password-stdin
-    - docker build -t $IMAGE_TAG .
-    - docker push $IMAGE_TAG
+    - docker build -t $IMAGE_TAG -t $IMAGE:latest .
+    - docker push --all-tags $IMAGE
 
 release_job:
   stage: release
