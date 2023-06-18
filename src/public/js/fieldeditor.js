@@ -6,8 +6,7 @@ for (let i = 0; i < buttonList.length; i++) {
 }
 
 function toggleForm(fieldId) {
-    console.log("event triggered");
-    const formElmList = document.querySelectorAll(`[data-form-id='${fieldId}']`)
+    const formElmList = document.querySelectorAll(`[form='row-form-${fieldId}']`)
     for (let i = 0; i < formElmList.length; i++) {
         formElmList[i].toggleAttribute("readonly");
         formElmList[i].classList.toggle("form-control-plaintext");
