@@ -4,14 +4,16 @@
         <meta charset="utf-8">
         <title>MC Route Manager</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        @section('scripts')
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-        <link rel="stylesheet" href="{{asset('css/reset.css')}}">
-        <link rel="stylesheet" href="{{asset('css/utils.css')}}">
-        <link rel="stylesheet" href="{{asset('css/header.css')}}">
-        <link rel="stylesheet" href="{{asset('css/main.css')}}">
-        <link rel="stylesheet" href="{{asset('css/tables.css')}}">
-        @show
+{{--        @section('scripts')--}}
+{{--        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">--}}
+{{--        <link rel="stylesheet" href="{{asset('css/reset.css')}}">--}}
+{{--        <link rel="stylesheet" href="{{asset('css/utils.css')}}">--}}
+{{--        <link rel="stylesheet" href="{{asset('css/header.css')}}">--}}
+{{--        <link rel="stylesheet" href="{{asset('css/main.css')}}">--}}
+{{--        <link rel="stylesheet" href="{{asset('css/tables.css')}}">--}}
+{{--        @show--}}
+
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body style="margin: 0; background-color: var(--bg-light-grey);">
         <header id="main">
@@ -35,10 +37,10 @@
         </main>
         <footer>
         </footer>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
-        <script src="{{asset('js/icons.js')}}"></script>
-        <script src="{{asset('js/tooltips.js')}}"></script>
-        <script src="{{asset('js/fieldEditor.js')}}"></script>
+{{--        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>--}}
+{{--        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>--}}
+{{--        <script src="{{asset('js/icons.js')}}"></script>--}}
+{{--        <script src="{{asset('js/tooltips.js')}}"></script>--}}
+{{--        <script src="{{asset('js/fieldEditor.js')}}"></script>--}}
     </body>
 </html>
