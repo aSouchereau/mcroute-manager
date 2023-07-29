@@ -26,7 +26,7 @@
                     <td>{{$group->description}}</td>
                     <td>{{$group->routes->count()}}</td>
                     <td>enable</td>
-                    <td><x-edit-button tooltipName="Group"></x-edit-button></td>
+                    <td><x-edit-button tooltipName="Group" fieldId="{{$group->id}}"></x-edit-button></td>
                 </tr>
             @endforeach
             </tbody>
