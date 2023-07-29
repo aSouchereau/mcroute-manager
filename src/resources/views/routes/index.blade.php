@@ -1,8 +1,8 @@
 @extends('master')
-@section('scripts')
-    @parent
-    <link rel="stylesheet" href="{{asset('css/home.css')}}">
-@endsection
+{{--@section('scripts')--}}
+{{--    @parent--}}
+{{--    <link rel="stylesheet" href="{{asset('css/home.css')}}">--}}
+{{--@endsection--}}
 @section('content')
     <x-home-nav activeElm="1"></x-home-nav>
     <div class="content-header">
