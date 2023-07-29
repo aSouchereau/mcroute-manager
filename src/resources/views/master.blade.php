@@ -13,7 +13,7 @@
 {{--        <link rel="stylesheet" href="{{asset('css/tables.css')}}">--}}
 {{--        @show--}}
 
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/scss/app.scss', 'resources/js/app.js'])
     </head>
     <body style="margin: 0; background-color: var(--bg-light-grey);">
         <header id="main">
