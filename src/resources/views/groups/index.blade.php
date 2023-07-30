@@ -22,8 +22,8 @@
             <tbody>
             @foreach ($groups as $group)
                 <tr>
-                    <td>{{$group->name}}</td>
-                    <td>{{$group->description}}</td>
+                    <td><input value="{{$group->name}}" class="form-control-plaintext" readonly data-form-id="{{$group->id}}" /></td>
+                    <td><input value="{{$group->description}}" class="form-control-plaintext" readonly data-form-id="{{$group->id}}" /></td>
                     <td>{{$group->routes->count()}}</td>
                     <td>enable</td>
                     <td><x-edit-button tooltipName="Group" fieldId="{{$group->id}}"></x-edit-button></td>
