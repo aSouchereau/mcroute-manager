@@ -1,6 +1,6 @@
 <tr>
     <form
-        id="row-form-{{isset($route->id) ?? "new"}}"
+        id="row-form-{{$route->id ?? "new"}}"
         method="POST"
         action="{{ (isset($route->id)) ?
                 (route('routes.update', $route->id))
@@ -10,7 +10,7 @@
         @method('PATCH')
     </form>
     <td>
-        <input form="row-form-{{isset($route->id) ?? "new"}}"
+        <input form="row-form-{{$route->id ?? "new"}}"
             id="nickname"
             name="nickname"
             @isset($route)
@@ -22,7 +22,7 @@
         />
     </td>
     <td>
-        <input form="row-form-{{isset($route->id) ?? "new"}}"
+        <input form="row-form-{{$route->id ?? "new"}}"
                id="domain_name"
                name="domain_name"
                @isset($route)
@@ -34,7 +34,7 @@
         />
     </td>
     <td>
-        <input form="row-form-{{isset($route->id) ?? "new"}}"
+        <input form="row-form-{{$route->id ?? "new"}}"
                id="host"
                name="host"
                @isset($route)
@@ -46,7 +46,7 @@
         />
     </td>
     <td>
-        <input form="row-form-{{isset($route->id) ?? "new"}}"
+        <input form="row-form-{{$route->id ?? "new"}}"
                id="group_id"
                name="group_id"
                @isset($route)
@@ -73,7 +73,6 @@
             <x-edit-button tooltipName="Route" fieldId="{{$route->id}}"></x-edit-button>
             <x-delete-button tooltipName="Route" fieldId="{{$route->id}}" :resource="$route"></x-delete-button>
         @endisset
-        <input type="submit" value="Submit" form="row-form-{{isset($route->id) ?? "new"}}"><br>
     </td>
 
 
