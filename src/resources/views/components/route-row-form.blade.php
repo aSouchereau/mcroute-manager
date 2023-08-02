@@ -72,6 +72,7 @@
         @isset($route)
             <x-edit-button tooltipName="Route" fieldId="{{$route->id}}"></x-edit-button>
             <x-delete-button tooltipName="Route" fieldId="{{$route->id}}" :resource="$route"></x-delete-button>
+            <x-save-button tooltipName="Route" fieldId="{{$route->id}}" :resource="$route"></x-save-button>
         @endisset
     </td>
 
