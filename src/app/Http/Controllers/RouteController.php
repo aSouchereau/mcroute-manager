@@ -62,7 +62,7 @@ class RouteController extends Controller
      */
     public function destroy(Route $route): RedirectResponse
     {
-        $route = Route::findOrFail($route);
+        $route = Route::findOrFail($route->id);
         $route->delete();
 
         return redirect('routes');
