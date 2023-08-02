@@ -71,6 +71,7 @@
     <td>
         @isset($route)
             <x-edit-button tooltipName="Route" fieldId="{{$route->id}}"></x-edit-button>
+            <x-delete-button tooltipName="Route" fieldId="{{$route->id}}" :resource="$route"></x-delete-button>
         @endisset
         <input type="submit" value="Submit" form="row-form-{{isset($route->id) ?? "new"}}"><br>
     </td>
