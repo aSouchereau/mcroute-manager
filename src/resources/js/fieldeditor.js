@@ -1,4 +1,4 @@
-const buttonList = document.querySelectorAll('[data-field-editor="button"]');
+const buttonList = document.querySelectorAll('[data-field-editor="edit-button"]');
 for (let i = 0; i < buttonList.length; i++) {
     buttonList[i].addEventListener('click', function () {
         toggleForm(buttonList[i].dataset.targetFormId);
@@ -14,4 +14,8 @@ function toggleForm(fieldId) {
 
 
     }
+}
+
+function toggleButtonSet() {
+
 }
