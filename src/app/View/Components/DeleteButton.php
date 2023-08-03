@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Group;
 use App\Models\Route;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -15,7 +16,7 @@ class DeleteButton extends Component
     public function __construct(
         public string $tooltipName,
         public int $fieldId,
-        public $resource
+        public Route | Group $resource
     ) {}
 
     /**

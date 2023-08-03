@@ -2,6 +2,8 @@
 
 namespace App\View\Components;
 
+use App\Models\Group;
+use App\Models\Route;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -13,7 +15,7 @@ class SaveButton extends Component
      */
     public function __construct(
         public int $fieldId,
-        public $resource
+        public Route | Group $resource
     ) {}
 
     /**
