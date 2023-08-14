@@ -1,7 +1,15 @@
-const buttonList = document.querySelectorAll('[data-field-editor="edit-button"]');
-for (let i = 0; i < buttonList.length; i++) {
-    buttonList[i].addEventListener('click', function () {
-        toggleForm(buttonList[i].dataset.targetFormId);
+const editButtonList = document.querySelectorAll('[data-field-editor="edit-button"]');
+const cancelButtonList = document.querySelectorAll('[data-field-editor="cancel-button"]');
+
+for (let i = 0; i < editButtonList.length; i++) {
+    editButtonList[i].addEventListener('click', function () {
+        toggleForm(editButtonList[i].dataset.targetFormId);
+    });
+}
+
+for (let i = 0; i < cancelButtonList.length; i++) {
+    cancelButtonList[i].addEventListener('click', function () {
+       toggleForm(cancelButtonList[i].dataset.targetFormId);
     });
 }
 
