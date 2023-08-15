@@ -9,12 +9,17 @@ class Route extends Model
 {
     use HasFactory;
 
+    protected $table = "routes";
+
     protected $fillable = [
         "nickname",
         "domain_name",
         "host",
-        "group_id",
-        "enabled"
+        "group_id"
+    ];
+
+    protected $guarded = [
+      "enabled"
     ];
 
     public function group() {

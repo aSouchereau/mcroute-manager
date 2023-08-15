@@ -32,7 +32,7 @@ Route::group(['as' => 'routes.', 'prefix' => 'routes'], function () {
     Route::post('', [RouteController::class, 'store'])->name('store');
     // Temporary edit route
     Route::get('{route}/edit', [RouteController::class, 'edit'])->name('edit');
-    Route::patch('', [RouteController::class, 'store'])->name('update');
+    Route::patch('{route}', [RouteController::class, 'update'])->name('update');
     Route::delete('{route}', [RouteController::class, 'destroy'])->name('delete');
     Route::get('', [RouteController::class, 'index'])->name('index');
 });

@@ -39,3 +39,12 @@ p {
     font-size: 0.9rem;
     font-weight: 500;
 }
+
+.btn.btn-stealth {
+    padding: 0;
+    margin: 0;
+    font-size: 0.87rem;
+    font-weight: 300;
+    width: 20px;
+    color: var(--dark-grey);
+}

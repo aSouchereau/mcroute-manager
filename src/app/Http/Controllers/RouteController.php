@@ -40,7 +40,19 @@ class RouteController extends Controller
         $group = Group::findOrFail($request->group_id);
         $route = new Route($request->all());
         $group->routes()->save($route);
-        $this->addRoute($route);
+        $this->addRoute($route); // Makes api call to router to activate new route
+
+        return redirect('routes');
+    }
+
+    /**
+     * Update the specified resource in storage.
+     * @throws Exception
+     */
+    public function update(Request $request, Route $route): RedirectResponse
+    {
+        $formData = $request->all();
+        $route->update($formData);
 
         return redirect('routes');
     }
@@ -50,7 +62,7 @@ class RouteController extends Controller
      */
     public function destroy(Route $route): RedirectResponse
     {
-        $route = Route::findOrFail($route);
+        $route = Route::findOrFail($route->id);
         $route->delete();
 
         return redirect('routes');

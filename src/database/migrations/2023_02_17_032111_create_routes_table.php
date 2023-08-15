@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nickname');
             $table->string('domain_name')->unique();
             $table->string('host');
-            $table->boolean('enabled');
+            $table->boolean('enabled')->default(true);
             $table->foreignId('group_id')->references('id')->on('groups');
             $table->timestamps();
         });
