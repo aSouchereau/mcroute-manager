@@ -70,10 +70,14 @@
 
     <td>
         @isset($route)
-            <x-edit-button tooltipName="Route" fieldId="{{$route->id}}"></x-edit-button>
-            <x-delete-button tooltipName="Route" fieldId="{{$route->id}}" :resource="$route"></x-delete-button>
-            <x-save-button fieldId="{{$route->id}}" :resource="$route"></x-save-button>
-            <x-cancel-button fieldId="{{$route->id}}"></x-cancel-button>
+            <div data-field-editor="default-button-set" data-form-id="{{$route->id}}">
+                <x-edit-button tooltipName="Route" fieldId="{{$route->id}}"></x-edit-button>
+                <x-delete-button tooltipName="Route" fieldId="{{$route->id}}" :resource="$route"></x-delete-button>
+            </div>
+            <div data-field-editor="edit-button-set" data-form-id="{{$route->id}}" style="display: none">
+                <x-save-button fieldId="{{$route->id}}" :resource="$route"></x-save-button>
+                <x-cancel-button fieldId="{{$route->id}}"></x-cancel-button>
+            </div>
         @endisset
     </td>
 
