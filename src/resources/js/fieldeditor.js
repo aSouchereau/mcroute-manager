@@ -21,21 +21,18 @@ cancelBtnList.forEach((cancelBtn) => {
 
 function toggleForm(formId) {
     const formElmList = document.querySelectorAll(`[form='row-form-${formId}']`);
-    for (let i = 0; i < formElmList.length; i++) {
-        formElmList[i].toggleAttribute("readonly");
-        formElmList[i].classList.toggle("form-control-plaintext");
-        formElmList[i].classList.toggle("form-control");
-
-
-    }
+    formElmList.forEach((formElm) => {
+        formElm.toggleAttribute("readonly");
+        formElm.classList.toggle("form-control-plaintext");
+        formElm.classList.toggle("form-control");
+    });
 }
 
 function toggleButtonSet(formId, btnSetType) {
     const btnSet = document.querySelector(`[data-field-editor="${btnSetType}-button-set"][data-form-id="${formId}"]`);
-    console.log(btnSet)
         if (btnSet.style.display !== "none") {
             btnSet.style.display = "none";
         } else if (btnSet.style.display === "none") {
-            btnSet.style.display = "block";
+            btnSet.style.display = "flex";
         }
 }

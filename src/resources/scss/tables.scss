@@ -35,6 +35,21 @@
     border-bottom: none;
 }
 
+/* Action Buttons */
+[data-field-editor="default-button-set"],[data-field-editor="edit-button-set"] {
+    display: flex;
+    justify-content: space-between;
+}
+[data-field-editor="cancel-button"] a {
+    color: red;
+}
+[data-field-editor="delete-button"] a {
+    color: red;
+}
+[data-field-editor="save-button"] a {
+    color: green;
+}
+
 /* Fixes plaintext shifting left-right when toggled*/
 .home-resource-table td .form-control-plaintext {
     padding-left: 13px;
