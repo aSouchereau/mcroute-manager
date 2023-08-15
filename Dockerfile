@@ -52,6 +52,9 @@ RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
 # Switch to use a non-root user from here on
 USER nobody
 
+# Add scripts
+COPY --chown=nobody scripts /usr/local/bin/
+
 # Add application
 COPY --chown=nobody src /var/www/html/
 

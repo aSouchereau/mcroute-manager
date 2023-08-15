@@ -1,6 +1,16 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--bg-light-grey);
+}
+
 .container {
     width: 78%;
     margin: 0 auto;
+    padding: 0;
 }
 
 section#content {
