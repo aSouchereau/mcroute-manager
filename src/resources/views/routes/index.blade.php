@@ -29,10 +29,10 @@
             </tr>
         </thead>
         <tbody>
-        @foreach($routes as $route)
-            <x-route-row-form :routeData="$route"></x-route-row-form>
+            @foreach($routes as $route)
+                <x-route-row-form :routeData="$route"></x-route-row-form>
+            @endforeach
             <x-route-row-form :routeData="null"></x-route-row-form>
-        @endforeach
         </tbody>
     </table>
 @endsection

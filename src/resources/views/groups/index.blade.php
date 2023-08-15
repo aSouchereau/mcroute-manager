@@ -1,8 +1,8 @@
 @extends('master')
-@section('scripts')
-    @parent
-    <link rel="stylesheet" href="{{asset('css/home.css')}}">
-@endsection
+{{--@section('scripts')--}}
+{{--    @parent--}}
+{{--    <link rel="stylesheet" href="{{asset('css/home.css')}}">--}}
+{{--@endsection--}}
 @section('content')
     <x-home-nav activeElm="2"></x-home-nav>
     <div>
@@ -20,15 +20,10 @@
                 </tr>
             </thead>
             <tbody>
-            @foreach ($groups as $group)
-                <tr>
-                    <td><input value="{{$group->name}}" class="form-control-plaintext" readonly data-form-id="{{$group->id}}" /></td>
-                    <td><input value="{{$group->description}}" class="form-control-plaintext" readonly data-form-id="{{$group->id}}" /></td>
-                    <td>{{$group->routes->count()}}</td>
-                    <td>enable</td>
-                    <td><x-edit-button tooltipName="Group" fieldId="{{$group->id}}"></x-edit-button></td>
-                </tr>
-            @endforeach
+                @foreach ($groups as $group)
+                    <x-group-row-form :groupData="$group"></x-group-row-form>
+                @endforeach
+                <x-group-row-form :groupData="null"></x-group-row-form>
             </tbody>
         </table>
 @endsection
