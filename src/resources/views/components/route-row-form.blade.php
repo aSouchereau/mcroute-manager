@@ -19,6 +19,7 @@
             @endisset
             class="form-control-plaintext"
             readonly
+               disabled
         />
     </td>
     <td>
@@ -31,6 +32,7 @@
                @endisset
                class="form-control-plaintext"
                readonly
+               disabled
         />
     </td>
     <td>
@@ -43,19 +45,40 @@
                @endisset
                class="form-control-plaintext"
                readonly
+               disabled
         />
     </td>
     <td>
-        <input form="row-form-{{$route->id ?? "new"}}"
-               id="group_id"
-               name="group_id"
-               @isset($route)
-                   value="{{$route->group_id}}"
-                   data-form-id="{{$route->id}}"
-               @endisset
-               class="form-control-plaintext"
-               readonly
-        />
+{{--        <input form="row-form-{{$route->id ?? "new"}}"--}}
+{{--               id="group_id"--}}
+{{--               name="group_id"--}}
+{{--               @isset($route)--}}
+{{--                   value="{{$route->group_id}}"--}}
+{{--                   data-form-id="{{$route->id}}"--}}
+{{--               @endisset--}}
+{{--               class="form-control-plaintext"--}}
+{{--               readonly--}}
+{{--        />--}}
+        <select form="row-form-{{$route->id ?? "new"}}"
+                id="group_id"
+                name="group_id"
+                @isset($route)
+                    data-form-id="{{$route->id}}"
+                @endisset
+                class="form-select form-control-plaintext"
+                readonly
+                disabled
+        >
+            <option value=""></option>
+            @foreach($groups as $group)
+                <option value="{{$group->id}}"
+                    @isset($route)
+                        @if($group->id === $route->group_id)
+                            selected
+                       @endif
+                    @endisset>{{$group->name}}</option>
+            @endforeach
+        </select>
     </td>
 
     @isset($route)

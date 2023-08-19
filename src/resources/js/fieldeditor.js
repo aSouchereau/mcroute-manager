@@ -20,9 +20,10 @@ cancelBtnList.forEach((cancelBtn) => {
 });
 
 function toggleForm(formId) {
-    const formElmList = document.querySelectorAll(`input[form='row-form-${formId}']`);
+    const formElmList = document.querySelectorAll(`input[form='row-form-${formId}'],select[form='row-form-${formId}']`);
     formElmList.forEach((formElm) => {
         formElm.toggleAttribute("readonly");
+        formElm.toggleAttribute("disabled");
         formElm.classList.toggle("form-control-plaintext");
         formElm.classList.toggle("form-control");
     });
