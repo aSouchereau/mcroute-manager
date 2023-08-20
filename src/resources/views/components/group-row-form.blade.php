@@ -19,6 +19,7 @@
                @endisset
                class="form-control-plaintext"
                readonly
+               disabled
         />
     </td>
     <td>
@@ -31,6 +32,7 @@
                @endisset
                class="form-control-plaintext"
                readonly
+               disabled
         />
     </td>
     <td>
