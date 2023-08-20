@@ -26,7 +26,7 @@
                     <div class="mb-3">
                         <label class="form-label" for="group_id">Group</label>
                         <select class="form-select" name="group_id" id="group_id">
-                            <option>Select Group</option>
+                            <option value="" selected>Select Group</option>
                                 @foreach($groups as $group)
                                     <option value="{{$group->id}}">{{ $group->name }}</option>
                                 @endforeach

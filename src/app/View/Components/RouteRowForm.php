@@ -2,6 +2,7 @@
 
 namespace App\View\Components;
 
+use App\Models\Group;
 use App\Models\Route;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -23,6 +24,7 @@ class RouteRowForm extends Component
     public function render(): View|Closure|string
     {
         $route = $this->routeData;
-        return view('components.route-row-form', compact('route'));
+        $groups = Group::all();
+        return view('components.route-row-form', compact('route', 'groups'));
     }
 }

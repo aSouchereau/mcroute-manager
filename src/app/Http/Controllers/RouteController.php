@@ -37,9 +37,14 @@ class RouteController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $group = Group::findOrFail($request->group_id);
         $route = new Route($request->all());
-        $group->routes()->save($route);
+        if ($request->group_id) {
+            $group = Group::findOrFail($request->group_id);
+            $group->routes()->save($route);
+        } else {
+            $route->save();
+        }
+
         $this->addRoute($route); // Makes api call to router to activate new route
 
         return redirect('routes');

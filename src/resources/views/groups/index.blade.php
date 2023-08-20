@@ -9,7 +9,7 @@
         <h1>Groups</h1>
         <p>Group routes for easier management</p>
     </div>
-        <table class="home-resource-table">
+        <table class="home-resource-table" id="groups">
             <thead>
                 <tr>
                     <th>name</th>
