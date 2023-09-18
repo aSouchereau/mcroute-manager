@@ -83,11 +83,12 @@
 
     @isset($route)
         <td>
-                @if($route->enabled)
-                    enabled
-                @else
-                    disabled
-                @endif
+            <div class="toggle-switch-wrapper">
+                <x-toggle-switch
+                    routeName="routes.toggle"
+                    :resource="$route"
+                />
+            </div>
         </td>
     @endisset
 

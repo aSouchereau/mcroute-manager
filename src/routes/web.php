@@ -28,6 +28,7 @@ Route::group(['as' => 'groups.', 'prefix' => 'groups'], function () {
 });
 
 Route::group(['as' => 'routes.', 'prefix' => 'routes'], function () {
+    Route::patch('{route}/status', [RouteController::class, 'toggle'])->name('toggle');
     Route::get('create', [RouteController::class, 'create'])->name('create');
     Route::post('', [RouteController::class, 'store'])->name('store');
     // Temporary edit route
