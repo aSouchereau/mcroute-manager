@@ -83,10 +83,12 @@
 
     @isset($route)
         <td>
-            <x-toggle-switch
-                routeName="routes.toggle"
-                :resource="$route"
-            />
+            <div class="toggle-switch-wrapper">
+                <x-toggle-switch
+                    routeName="routes.toggle"
+                    :resource="$route"
+                />
+            </div>
         </td>
     @endisset
 

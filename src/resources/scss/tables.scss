@@ -53,6 +53,12 @@
     color: green;
 }
 
+/* Toggle Switch */
+div.toggle-switch-wrapper {
+    width: fit-content;
+    margin: auto;
+}
+
 /* Routes Table Column Sizing */
 .home-resource-table#routes th:nth-of-type(1) {
     width: 15%;
