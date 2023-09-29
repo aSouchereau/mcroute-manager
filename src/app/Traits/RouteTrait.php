@@ -39,6 +39,20 @@ trait RouteTrait {
         return Http::retry(3, 100)->delete('http://mcrouter:25564/routes/' . $route->domain_name);
     }
 
+
+    /**
+     * Makes different calls to mc-router api depending on its status in the db
+     * @param Route $route
+     * @return void
+     */
+    public function toggleRoute(Route $route) {
+        if ($route->enabled) {
+            $this->deleteRoute($route);
+        } else {
+            $this->addRoute($route);
+        }
+    }
+
     /**
      * Calls configured mc-router api to
      * @param Route $route
