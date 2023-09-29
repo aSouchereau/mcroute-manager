@@ -40,14 +40,21 @@ class RouteController extends Controller
     public function store(Request $request): RedirectResponse
     {
         $route = new Route($request->all());
+
+        // Makes api call to router to activate new route
+        try {
+            $this->addRoute($route->domain_name, $route->host);
+        } catch (RequestException $e) {
+            notyf()->addError('Router API: Failed to add new route - ' . $e->getMessage());
+            return redirect('routes');
+        }
+
         if ($request->group_id) {
             $group = Group::findOrFail($request->group_id);
             $group->routes()->save($route);
         } else {
             $route->save();
         }
-
-        $this->addRoute($route); // Makes api call to router to activate new route
 
         return redirect('routes');
     }
@@ -59,6 +66,12 @@ class RouteController extends Controller
     public function update(Request $request, Route $route): RedirectResponse
     {
         $formData = $request->all();
+        try {
+            $this->replaceRoute($route, $formData);
+        } catch (RequestException $e) {
+            notyf()->addError('Router API: Failed to update route - ' . $e->getMessage());
+            return redirect('routes');
+        }
         $route->update($formData);
 
         return redirect('routes');
@@ -70,6 +83,12 @@ class RouteController extends Controller
     public function destroy(Route $route): RedirectResponse
     {
         $route = Route::findOrFail($route->id);
+        try {
+            $this->deleteRoute($route);
+        } catch (RequestException $e) {
+            notyf()->addError('Router API: Failed to delete route - ' . $e->getMessage());
+            return redirect('routes');
+        }
         $route->delete();
 
         return redirect('routes');
@@ -83,6 +102,7 @@ class RouteController extends Controller
             $this->toggleRoute($route);
         } catch (RequestException $e) {
             notyf()->addError('Router API: Failed to toggle route status - ' . $e->getMessage());
+            return redirect('routes');
         }
 
         $route->enabled = !$route->enabled;
