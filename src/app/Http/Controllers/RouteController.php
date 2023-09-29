@@ -6,6 +6,7 @@ use App\Models\Group;
 use App\Models\Route;
 use App\Traits\RouteTrait;
 use GuzzleHttp\Exception\ClientException;
+use Illuminate\Http\Client\RequestException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -78,13 +79,11 @@ class RouteController extends Controller
     {
         $route = Route::findOrFail($route->id);
 
-        // Toggles route in router
-        if ($route->enabled) {
-            $this->deleteRoute($route);
-        } else {
-            $this->addRoute($route);
+        try {
+            $this->toggleRoute($route);
+        } catch (RequestException $e) {
+            notyf()->addError('Router API: Failed to toggle route status - ' . $e->getMessage());
         }
-
 
         $route->enabled = !$route->enabled;
         $route->save();
