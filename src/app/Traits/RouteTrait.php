@@ -13,7 +13,7 @@ trait RouteTrait {
      * @return \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
      */
     public function addRoute(Route $route) {
-        return Http::retry(3, 100)->post('http://mcrouter:25564/routes', [
+        return Http::retry(2, 100)->post('http://mcrouter:25564/routes', [
             'serverAddress' => $route->domain_name,
             'backend' => $route->host
         ]);
@@ -36,7 +36,7 @@ trait RouteTrait {
      * @return \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
      */
     public function deleteRoute(Route $route) {
-        return Http::retry(3, 100)->delete('http://mcrouter:25564/routes/' . $route->domain_name);
+       return Http::retry(2, 100)->delete('http://mcrouter:25564/routes/' . $route->domain_name);
     }
 
 
@@ -69,7 +69,7 @@ trait RouteTrait {
      * @return \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
      */
     public function setDefaultRoute($destination) {
-        return Http::retry(3, 100)->post('http://mcrouter:25564/defaultRoute', [
+        return Http::retry(2, 100)->post('http://mcrouter:25564/defaultRoute', [
             'backend' => $destination
         ]);
     }
@@ -79,6 +79,6 @@ trait RouteTrait {
      * @return \GuzzleHttp\Promise\PromiseInterface|\Illuminate\Http\Client\Response
      */
     public function getActiveRoutes() {
-        return Http::retry(3, 100)->get('http://mcrouter:25564/routes');
+        return Http::retry(2, 100)->get('http://mcrouter:25564/routes');
     }
 }
