@@ -67,7 +67,7 @@ class RouteController extends Controller
     {
         $formData = $request->all();
         try {
-            $this->replaceRoute($route, $formData);
+            $this->replaceRoute($route, $request);
         } catch (RequestException $e) {
             notyf()->addError('Router API: Failed to update route - ' . $e->getMessage());
             return redirect('routes');
