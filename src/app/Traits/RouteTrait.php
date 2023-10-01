@@ -82,6 +82,6 @@ trait RouteTrait {
      * @return PromiseInterface|Response
      */
     public function getActiveRoutes() {
-        return Http::retry(2, 100)->get('http://mcrouter:25564/routes');
+        return Http::retry(2, 100)->acceptJson()->get('http://mcrouter:25564/routes');
     }
 }
