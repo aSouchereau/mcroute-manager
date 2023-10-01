@@ -84,7 +84,7 @@ class RouteController extends Controller
     {
         $route = Route::findOrFail($route->id);
         try {
-            $this->deleteRoute($route);
+            $this->deleteRoute($route->domain_name);
         } catch (RequestException $e) {
             notyf()->addError('Router API: Failed to delete route - ' . $e->getMessage());
             return redirect('routes');

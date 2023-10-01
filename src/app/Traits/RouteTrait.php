@@ -35,11 +35,11 @@ trait RouteTrait {
 
     /**
      * Calls configured mc-router api to delete route by its domain name.
-     * @param Route $route
+     * @param $domainName
      * @return PromiseInterface|Response
      */
-    public function deleteRoute(Route $route) {
-       return Http::retry(2, 100)->delete('http://mcrouter:25564/routes/' . $route->domain_name);
+    public function deleteRoute($domainName) {
+       return Http::retry(2, 100)->delete('http://mcrouter:25564/routes/' . $domainName);
     }
 
 
@@ -50,7 +50,7 @@ trait RouteTrait {
      */
     public function toggleRoute(Route $route) {
         if ($route->enabled) {
-            $this->deleteRoute($route);
+            $this->deleteRoute($route->domain_name);
         } else {
             $this->addRoute($route->domain_name, $route->host);
         }
@@ -62,7 +62,7 @@ trait RouteTrait {
      * @return void
      */
     public function replaceRoute(Route $route, $formData) {
-        $this->deleteRoute($route);
+        $this->deleteRoute($route->domain_name);
         $this->addRoute($formData->domain_name, $formData->host);
     }
 
