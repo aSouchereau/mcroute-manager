@@ -8,7 +8,7 @@ use App\Jobs\SyncDbRouter;
 
 class SyncRouterController extends Controller
 {
-    public function __invoke(): void
+    public function sync(): void
     {
         SyncDbRouter::dispatchSync();
     }
