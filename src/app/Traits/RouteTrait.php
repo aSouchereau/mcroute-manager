@@ -16,7 +16,9 @@ trait RouteTrait {
      * @return PromiseInterface|Response
      */
     public function addRoute($domainName, $host) {
-        return Http::retry(2, 100)->post('http://mcrouter:25564/routes', [
+        return Http::retry(2, 100)->withHeaders([
+            'Content-Type' => 'application/json'
+        ])->post('http://mcrouter:25564/routes', [
             'serverAddress' => $domainName,
             'backend' => $host
         ]);
