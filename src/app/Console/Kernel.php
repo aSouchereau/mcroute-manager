@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(new SyncDbRouter)->everyFiveMinutes();
+        $schedule->job(new SyncDbRouter)->everyFifteenMinutes();
     }
 
     /**
