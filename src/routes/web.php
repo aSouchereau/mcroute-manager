@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\GroupController;
+use App\Http\Controllers\ResetRouterController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SyncRouterController;
 use Illuminate\Support\Facades\Route;
@@ -39,3 +40,4 @@ Route::group(['as' => 'routes.', 'prefix' => 'routes'], function () {
 });
 
 Route::post('jobs/sync', [SyncRouterController::class, 'sync'])->name('jobs.sync');
+Route::post('jobs/reset', [ResetRouterController::class, 'reset'])->name('jobs.reset');
