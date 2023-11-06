@@ -37,16 +37,17 @@ class SyncDbRouter implements ShouldQueue, ShouldBeUnique
     public function handle(): void
     {
         Log::notice('Syncing router with database');
-        $count = $this->syncRouter();
+        $removedCount = $this->removeStaleRoutes();
+        $addedCount = $this->addMissingRoutes();
         Log::notice('Syncing Complete');
-        Log::info('Corrected ' . $count . ' out-of-sync items');
+        Log::info('Corrected ' . $removedCount + $addedCount. ' out-of-sync items');
     }
 
     /**
-     * Performs a sync that modifies router to match database
-     * @return int number of out-of-sync routes that were corrected
+     * Removes routes from the router if they do not exist in the database
+     * @return int number of stale routes that were corrected
      */
-    public function syncRouter(): int
+    public function removeStaleRoutes(): int
     {
         $correctionCount = 0;
         foreach ($this->routerRoutes as $key => $route) {
@@ -55,6 +56,15 @@ class SyncDbRouter implements ShouldQueue, ShouldBeUnique
                 $correctionCount++;
             }
         }
+        return $correctionCount;
+    }
+
+    /**
+     * Adds routes from the database if they are missing from the router
+     * @return int number of stale routes that were corrected
+     */
+    public function addMissingRoutes(): int {
+        $correctionCount = 0;
         foreach ($this->dbRoutes as $key => $route) {
             if (!array_key_exists($key, $this->routerRoutes)) {
                 $this->addRoute($key, $route['domain_name']);
