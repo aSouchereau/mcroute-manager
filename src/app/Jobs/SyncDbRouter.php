@@ -44,26 +44,21 @@ class SyncDbRouter implements ShouldQueue, ShouldBeUnique
 
     /**
      * Performs a sync that modifies router to match database
-     * @param bool|null $discard (true = discard excess routerRoutes), (false = add missing dbRoutes), (null = both)
      * @return int number of out-of-sync routes that were corrected
      */
-    public function syncRouter(?bool $discard = null): int
+    public function syncRouter(): int
     {
         $correctionCount = 0;
-        if ($discard || $discard === null) {
-            foreach ($this->routerRoutes as $key => $route) {
-                if (!array_key_exists($key, $this->dbRoutes)) {
-                    $this->deleteRoute($key);
-                    $correctionCount++;
-                }
+        foreach ($this->routerRoutes as $key => $route) {
+            if (!array_key_exists($key, $this->dbRoutes)) {
+                $this->deleteRoute($key);
+                $correctionCount++;
             }
         }
-        if ($discard === false || $discard === null) {
-            foreach ($this->dbRoutes as $key => $route) {
-                if (!array_key_exists($key, $this->routerRoutes)) {
-                    $this->addRoute($key, $route['domain_name']);
-                    $correctionCount++;
-                }
+        foreach ($this->dbRoutes as $key => $route) {
+            if (!array_key_exists($key, $this->routerRoutes)) {
+                $this->addRoute($key, $route['domain_name']);
+                $correctionCount++;
             }
         }
         return $correctionCount;
