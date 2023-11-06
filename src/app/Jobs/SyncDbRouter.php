@@ -67,7 +67,7 @@ class SyncDbRouter implements ShouldQueue, ShouldBeUnique
         $correctionCount = 0;
         foreach ($this->dbRoutes as $key => $route) {
             if (!array_key_exists($key, $this->routerRoutes)) {
-                $this->addRoute($key, $route['domain_name']);
+                $this->addRoute($key, $route['host']);
                 $correctionCount++;
             }
         }
