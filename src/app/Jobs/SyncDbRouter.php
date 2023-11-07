@@ -16,7 +16,13 @@ class SyncDbRouter implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels, RouteTrait;
 
+    /**
+     * @var array
+     */
     protected array $dbRoutes; // List of enabled routes from db
+    /**
+     * @var mixed|array
+     */
     protected mixed $routerRoutes; // Routes returned from API get request
 
     /**
@@ -39,8 +45,9 @@ class SyncDbRouter implements ShouldQueue, ShouldBeUnique
         Log::notice('Syncing router with database');
         $removedCount = $this->removeStaleRoutes();
         $addedCount = $this->addMissingRoutes();
+        $updatedCount = $this->updateHosts();
         Log::notice('Syncing Complete');
-        Log::info('Corrected ' . $removedCount + $addedCount. ' out-of-sync items');
+        Log::info('Removed ' . $removedCount . ' stale routes, added ' . $addedCount . ' missing routes, and updated ' . $updatedCount . 'hosts');
     }
 
     /**
@@ -69,6 +76,20 @@ class SyncDbRouter implements ShouldQueue, ShouldBeUnique
             if (!array_key_exists($key, $this->routerRoutes)) {
                 $this->addRoute($key, $route['host']);
                 $correctionCount++;
+            }
+        }
+        return $correctionCount;
+    }
+
+    /**
+     * Replaces routes if they exist in the database but the hosts don't match
+     * @return int
+     */
+    public function updateHosts(): int {
+        $correctionCount = 0;
+        foreach ($this->routerRoutes as $key => $route) {
+            if (array_key_exists($key, $this->dbRoutes) && $route != $this->dbRoutes[$key]['host']) {
+                $this->replaceRoute($key, $this->dbRoutes[$key]['host']);
             }
         }
         return $correctionCount;
