@@ -40,4 +40,3 @@ Route::group(['as' => 'routes.', 'prefix' => 'routes'], function () {
 });
 
 Route::post('jobs/sync', [SyncRouterController::class, 'sync'])->name('jobs.sync');
-Route::post('jobs/reset', [ResetRouterController::class, 'reset'])->name('jobs.reset');

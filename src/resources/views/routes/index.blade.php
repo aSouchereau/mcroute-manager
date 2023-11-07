@@ -20,12 +20,6 @@
                     Sync
                 </button>
             </form>
-            <form action="{{route('jobs.reset')}}" method="POST">
-                @csrf
-                <button type="submit" class="btn btn-danger" id="reset-button">
-                    Reset Router
-                </button>
-            </form>
 
         </div>
     </div>
