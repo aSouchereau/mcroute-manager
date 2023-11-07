@@ -59,14 +59,13 @@ class RouteController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @throws Exception
      */
     public function update(Request $request, Route $route): RedirectResponse
     {
         $formData = $request->all();
         try {
-            $this->replaceRoute($route, $request);
-        } catch (RequestException $e) {
+            $this->replaceRoute($route->domain_name, $request->host);
+        } catch (HttpClientException $e) {
             notyf()->addError('Router API: Failed to update route - ' . $e->getMessage());
             return redirect('routes');
         }

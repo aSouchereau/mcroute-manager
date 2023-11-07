@@ -60,12 +60,13 @@ trait RouteTrait {
 
     /**
      * Calls configured mc-router api to
-     * @param Route $route
+     * @param $domainName
+     * @param $newHost
      * @return void
      */
-    public function replaceRoute(Route $route, $formData) {
-        $this->deleteRoute($route->domain_name);
-        $this->addRoute($formData->domain_name, $formData->host);
+    public function replaceRoute($domainName, $newHost) {
+        $this->deleteRoute($domainName);
+        $this->addRoute($domainName, $newHost);
     }
 
     /**
