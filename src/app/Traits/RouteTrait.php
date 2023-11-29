@@ -16,7 +16,9 @@ trait RouteTrait {
      * @return PromiseInterface|Response
      */
     public function addRoute($domainName, $host) {
-        return Http::retry(2, 100)->post('http://mcrouter:25564/routes', [
+        return Http::retry(2, 100)->withHeaders([
+            'Content-Type' => 'application/json'
+        ])->post('http://mcrouter:25564/routes', [
             'serverAddress' => $domainName,
             'backend' => $host
         ]);
@@ -35,11 +37,11 @@ trait RouteTrait {
 
     /**
      * Calls configured mc-router api to delete route by its domain name.
-     * @param Route $route
+     * @param $domainName
      * @return PromiseInterface|Response
      */
-    public function deleteRoute(Route $route) {
-       return Http::retry(2, 100)->delete('http://mcrouter:25564/routes/' . $route->domain_name);
+    public function deleteRoute($domainName) {
+       return Http::retry(2, 100)->delete('http://mcrouter:25564/routes/' . $domainName);
     }
 
 
@@ -50,7 +52,7 @@ trait RouteTrait {
      */
     public function toggleRoute(Route $route) {
         if ($route->enabled) {
-            $this->deleteRoute($route);
+            $this->deleteRoute($route->domain_name);
         } else {
             $this->addRoute($route->domain_name, $route->host);
         }
@@ -58,12 +60,13 @@ trait RouteTrait {
 
     /**
      * Calls configured mc-router api to
-     * @param Route $route
+     * @param $domainName
+     * @param $newHost
      * @return void
      */
-    public function replaceRoute(Route $route, $formData) {
-        $this->deleteRoute($route);
-        $this->addRoute($formData->domain_name, $formData->host);
+    public function replaceRoute($domainName, $newHost) {
+        $this->deleteRoute($domainName);
+        $this->addRoute($domainName, $newHost);
     }
 
     /**
@@ -82,6 +85,6 @@ trait RouteTrait {
      * @return PromiseInterface|Response
      */
     public function getActiveRoutes() {
-        return Http::retry(2, 100)->get('http://mcrouter:25564/routes');
+        return Http::retry(2, 100)->acceptJson()->get('http://mcrouter:25564/routes');
     }
 }
