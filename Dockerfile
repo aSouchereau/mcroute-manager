@@ -46,6 +46,12 @@ COPY config/php.ini /etc/php81/conf.d/custom.ini
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
+# Set SUID for cron
+RUN chmod u+s /usr/bin/crontab
+
+# Copy cron schedule
+COPY config/crontab.txt /var/www/html/crontab.txt
+
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
 RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
 
