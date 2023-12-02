@@ -9,6 +9,7 @@ WORKDIR /var/www/html
 RUN apk add --no-cache \
   curl \
   nginx \
+  npm \
   php81 \
   php81-ctype \
   php81-curl \
@@ -66,6 +67,9 @@ COPY --chown=nobody src /var/www/html/
 
 # Run composer install to install the dependencies
 RUN composer install --optimize-autoloader --no-interaction --no-progress
+
+# Install npm dependencies
+RUN npm install --no-audit --no-progress
 
 # Expose the port nginx is reachable on
 EXPOSE 8080
