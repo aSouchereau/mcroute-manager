@@ -14,6 +14,13 @@
             <button type="button" class="btn btn-primary" id="create-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 New Route
             </button>
+            <form action="{{route('jobs.sync')}}" method="POST">
+                @csrf
+                <button type="submit" class="btn btn-success" id="sync-button">
+                    Sync
+                </button>
+            </form>
+
         </div>
     </div>
 
