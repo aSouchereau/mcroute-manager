@@ -13,10 +13,6 @@ if [ -f "$TEST_FILE" ]; then
   echo "Running migrations"
   php artisan migrate
 
-  echo "Adding cron configuration"
-  crontab /var/www/html/crontab.txt
-
-
   rm "$TEST_FILE" # Delete file so this script wont run again on each startup
   echo "Setup Complete"
 else
