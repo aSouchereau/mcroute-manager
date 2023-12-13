@@ -2,7 +2,7 @@
 
 TEST_FILE=/var/www/html/tempfile.txt
 
-cd ~/var/www/html # App directory
+cd /var/www/html # App directory
 
 if [ -f "$TEST_FILE" ]; then
   echo "Starting initial setup"
