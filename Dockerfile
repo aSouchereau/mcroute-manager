@@ -47,21 +47,22 @@ COPY config/php.ini /etc/php81/conf.d/custom.ini
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
-# Set SUID for cron
-RUN chmod u+s /usr/bin/crontab
+# Create nonroot user
+RUN adduser -D -s /bin/ash mcroutemanager
 
-# Copy cron schedule
+# Copy and set cron schedule
 COPY config/crontab.txt /var/www/html/crontab.txt
+RUN crontab /var/www/html/crontab.txt -u mcroutemanager
 
 # Make sure files/folders needed by the processes are accessable when they run under the nobody user
-RUN chown -R nobody.nobody /var/www/html /run /var/lib/nginx /var/log/nginx
+RUN chown -R mcroutemanager.mcroutemanager /var/www/html /run /var/lib/nginx /var/log/nginx
 
 
 # Add scripts
-COPY --chown=nobody scripts /usr/local/bin/
+COPY --chown=mcroutemanager scripts /usr/local/bin/
 
 # Add application
-COPY --chown=nobody src /var/www/html/
+COPY --chown=mcroutemanager src /var/www/html/
 
 # Run composer install to install the dependencies
 RUN composer install --optimize-autoloader --no-interaction --no-progress
