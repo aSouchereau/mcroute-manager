@@ -5,11 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Group;
 use App\Models\Route;
 use App\Traits\RouteTrait;
-use GuzzleHttp\Exception\ClientException;
-use Illuminate\Http\Client\RequestException;
+use Illuminate\Http\Client\HttpClientException;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\View\View;
 
 class RouteController extends Controller
@@ -44,7 +42,7 @@ class RouteController extends Controller
         // Makes api call to router to activate new route
         try {
             $this->addRoute($route->domain_name, $route->host);
-        } catch (RequestException $e) {
+        } catch (HttpClientException $e) {
             notyf()->addError('Router API: Failed to add new route - ' . $e->getMessage());
             return redirect('routes');
         }
@@ -61,14 +59,13 @@ class RouteController extends Controller
 
     /**
      * Update the specified resource in storage.
-     * @throws Exception
      */
     public function update(Request $request, Route $route): RedirectResponse
     {
         $formData = $request->all();
         try {
-            $this->replaceRoute($route, $request);
-        } catch (RequestException $e) {
+            $this->replaceRoute($route->domain_name, $request->host);
+        } catch (HttpClientException $e) {
             notyf()->addError('Router API: Failed to update route - ' . $e->getMessage());
             return redirect('routes');
         }
@@ -84,8 +81,8 @@ class RouteController extends Controller
     {
         $route = Route::findOrFail($route->id);
         try {
-            $this->deleteRoute($route);
-        } catch (RequestException $e) {
+            $this->deleteRoute($route->domain_name);
+        } catch (HttpClientException $e) {
             notyf()->addError('Router API: Failed to delete route - ' . $e->getMessage());
             return redirect('routes');
         }
@@ -100,7 +97,7 @@ class RouteController extends Controller
 
         try {
             $this->toggleRoute($route);
-        } catch (RequestException $e) {
+        } catch (HttpClientException $e) {
             notyf()->addError('Router API: Failed to toggle route status - ' . $e->getMessage());
             return redirect('routes');
         }
