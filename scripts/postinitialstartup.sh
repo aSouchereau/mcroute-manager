@@ -2,15 +2,19 @@
 
 TEST_FILE=/var/www/html/tempfile.txt
 
-cd ~/var/www/html # App directory
+cd /var/www/html # App directory
 
 if [ -f "$TEST_FILE" ]; then
-  echo "Running initial setup" >&2
-  php artisan migrate >&2
+  echo "Starting initial setup"
 
+  echo "Building scripts"
+  npm run build
+
+  echo "Running migrations"
+  php artisan migrate
 
   rm "$TEST_FILE" # Delete file so this script wont run again on each startup
-  echo "Setup Complete" >&2
+  echo "Setup Complete"
 else
-  echo  "Skipping initial setup - Already ran" >&2
+  echo  "Skipping initial setup - Already ran"
 fi
