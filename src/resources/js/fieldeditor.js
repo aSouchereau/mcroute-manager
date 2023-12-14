@@ -1,23 +1,15 @@
-const editBtnList = document.querySelectorAll('[data-field-editor="edit-button"]');
-const cancelBtnList = document.querySelectorAll('[data-field-editor="cancel-button"]');
+const btnList = document.querySelectorAll(
+    '[data-field-editor="edit-button"],[data-field-editor="create-button"],[data-field-editor="cancel-button"]');
 
-editBtnList.forEach((editBtn) => {
-    editBtn.addEventListener('click', function () {
-        let formId = editBtn.dataset.targetFormId;
+btnList.forEach((btn) => {
+    btn.addEventListener('click', function () {
+        let formId = btn.dataset.targetFormId ?? "new"; // Sets formId to "new" for the create button, since its not associated with any route and has no id
         toggleForm(formId);
         toggleButtonSet(formId, "edit");
         toggleButtonSet(formId, "default");
     });
 });
 
-cancelBtnList.forEach((cancelBtn) => {
-    cancelBtn.addEventListener('click', function () {
-        let formId = cancelBtn.dataset.targetFormId;
-        toggleForm(formId);
-        toggleButtonSet(formId, "default");
-        toggleButtonSet(formId, "edit");
-    });
-});
 
 function toggleForm(formId) {
     const formElmList = document.querySelectorAll(`input[form='row-form-${formId}'],select[form='row-form-${formId}']`);
