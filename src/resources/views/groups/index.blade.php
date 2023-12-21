@@ -35,7 +35,7 @@
                 @foreach ($groups as $group)
                     <x-group-row-form :groupData="$group"></x-group-row-form>
                 @endforeach
-                <x-group-row-form :groupData="null"></x-group-row-form>
+                <x-group-row-create-form></x-group-row-create-form>
             </tbody>
         </table>
 @endsection
