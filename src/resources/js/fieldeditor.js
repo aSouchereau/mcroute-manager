@@ -3,15 +3,30 @@ const btnList = document.querySelectorAll(
 
 btnList.forEach((btn) => {
     btn.addEventListener('click', function () {
-        let formId = btn.dataset.targetFormId ?? "new"; // Sets formId to "new" for the create button, since its not associated with any route and has no id
-        toggleForm(formId);
-        toggleButtonSet(formId, "edit");
-        toggleButtonSet(formId, "default");
+        let formId = btn.dataset.targetFormId;
+        if (formId === 'new') {
+            toggleForm(); // Switch from full table width create button to the create form
+        } else {
+            toggleFormElms(formId);
+            toggleButtonSet(formId, "edit");
+            toggleButtonSet(formId, "default");
+       }
     });
 });
 
+function toggleForm() {
+    const rowList = document.querySelectorAll('tr[data-field-editor="create-button-row"],tr[data-field-editor="form-row"]');
+    rowList.forEach((row) => {
+        if (row.style.display !== "none") {
+            row.style.display = "none";
+        } else if (row.style.display === "none") {
+            row.style.display = "table-row"
+        }
+    });
+}
 
-function toggleForm(formId) {
+
+function toggleFormElms(formId) {
     const formElmList = document.querySelectorAll(`input[form='row-form-${formId}'],select[form='row-form-${formId}']`);
     formElmList.forEach((formElm) => {
         formElm.toggleAttribute("readonly");
