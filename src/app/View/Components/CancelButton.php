@@ -12,7 +12,7 @@ class CancelButton extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public int $fieldId
+        public int | string $fieldId
     ) {}
 
     /**
