@@ -39,7 +39,7 @@
             @foreach($routes as $route)
                 <x-route-row-form :routeData="$route"></x-route-row-form>
             @endforeach
-            <x-route-row-form :routeData="null"></x-route-row-form>
+            <x-route-row-create-form></x-route-row-create-form>
         </tbody>
     </table>
 @endsection
