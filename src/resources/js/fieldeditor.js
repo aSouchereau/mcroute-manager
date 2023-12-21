@@ -8,8 +8,7 @@ btnList.forEach((btn) => {
             toggleForm(); // Switch from full table width create button to the create form
         } else {
             toggleFormElms(formId);
-            toggleButtonSet(formId, "edit");
-            toggleButtonSet(formId, "default");
+            toggleButtonSet(formId);
        }
     });
 });
@@ -36,11 +35,16 @@ function toggleFormElms(formId) {
     });
 }
 
-function toggleButtonSet(formId, btnSetType) {
-    const btnSet = document.querySelector(`[data-field-editor="${btnSetType}-button-set"][data-form-id="${formId}"]`);
+function toggleButtonSet(formId) {
+    const btnSetList = document.querySelectorAll(
+            `[data-field-editor="default-button-set"][data-form-id="${formId}"],
+            [data-field-editor="edit-button-set"][data-form-id="${formId}"]`
+        );
+    btnSetList.forEach((btnSet) => {
         if (btnSet.style.display !== "none") {
             btnSet.style.display = "none";
         } else if (btnSet.style.display === "none") {
             btnSet.style.display = "flex";
         }
+    });
 }
