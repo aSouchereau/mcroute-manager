@@ -14,8 +14,7 @@ class SaveButton extends Component
      * Create a new component instance.
      */
     public function __construct(
-        public int $fieldId,
-        public Route | Group $resource
+        public int | string $fieldId
     ) {}
 
     /**
@@ -25,9 +24,7 @@ class SaveButton extends Component
     {
 
         $fieldId = $this->fieldId;
-        $resource = $this->resource;
-        $formRoute = $this->resource->getTable() . ".update";
 
-        return view('components.save-button', compact( 'fieldId', 'resource', 'formRoute'));
+        return view('components.save-button', compact( 'fieldId'));
     }
 }
