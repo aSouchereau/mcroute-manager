@@ -8,5 +8,5 @@
    data-bs-placement="bottom"
    style="display: block; width: 100%">
         <x-icon name="plus-circle" style="width: 1rem"></x-icon>
-        New Route
+        New {{$name}}
 </a>
