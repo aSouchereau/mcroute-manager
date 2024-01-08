@@ -34,7 +34,7 @@
 .home-resource-table td:first-of-type {
     font-weight: 500;
 }
-.home-resource-table tr:last-of-type td {
+.home-resource-table tr:last-of-type td, .home-resource-table tr:nth-last-of-type(2) td {
     border-bottom: none;
 }
 

@@ -11,9 +11,7 @@
             <p>Map a source domain to a destination address</p>
         </div>
         <div>
-            <button type="button" class="btn btn-primary" id="create-button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-                New Route
-            </button>
+            <x-create-button name="Route"></x-create-button>
             <form action="{{route('jobs.sync')}}" method="POST">
                 @csrf
                 <button type="submit" class="btn btn-success" id="sync-button">
@@ -39,9 +37,9 @@
             @foreach($routes as $route)
                 <x-route-row-form :routeData="$route"></x-route-row-form>
             @endforeach
-            <x-route-row-form :routeData="null"></x-route-row-form>
+            <x-route-row-create-form></x-route-row-create-form>
         </tbody>
     </table>
 @endsection
 
-<x-route-create-modal></x-route-create-modal>
+
