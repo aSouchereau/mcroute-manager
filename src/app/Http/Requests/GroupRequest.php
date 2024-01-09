@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class GroupRequest extends FormRequest
 {
@@ -25,5 +27,17 @@ class GroupRequest extends FormRequest
             'name' => ['required', 'min:2', 'unique:groups,name,'. $this->segment(2)],
             'description' => 'required'
         ];
+    }
+
+    /**
+     * @throws HttpResponseException
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        $messages = $validator->getMessageBag();
+        foreach ($messages->all() as $message) {
+            notyf()->addError($message);
+        }
+        throw new HttpResponseException(back()->withInput());
     }
 }
