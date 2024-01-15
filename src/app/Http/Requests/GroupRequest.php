@@ -30,6 +30,7 @@ class GroupRequest extends FormRequest
     }
 
     /**
+     * Overwrite failedValidation method
      * @throws HttpResponseException
      */
     protected function failedValidation(Validator $validator)
@@ -38,6 +39,6 @@ class GroupRequest extends FormRequest
         foreach ($messages->all() as $message) {
             notyf()->addError($message);
         }
-        throw new HttpResponseException(back()->withInput());
+        throw new HttpResponseException(back()->withInput()); // Dont give http error response because we need to display the error as a flash notification
     }
 }
