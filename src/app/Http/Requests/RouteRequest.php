@@ -26,7 +26,7 @@ class RouteRequest extends FormRequest
         return [
             'nickname' => ['required', 'min:2'],
             'domain_name' => ['required', 'unique:routes,domain_name', 'regex:/^(([^:\/?#]*)(?:\:([0-9]+))?)$/'],
-            'host' => ['required', 'ipv4'],
+            'host' => ['required', 'regex:/^([0-9]{1,3}(\.[0-9]{1,3}){3}):[0-9]{1,5}/'],
             'group_id' => ['nullable', 'exists:groups,id', 'numeric']
         ];
     }
