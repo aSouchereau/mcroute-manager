@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RouteRequest extends FormRequest
 {
@@ -27,5 +29,14 @@ class RouteRequest extends FormRequest
             'host' => ['required', 'ipv4'],
             'group_id' => ['exists:groups,id', 'numeric']
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        $messages = $validator->getMessageBag();
+        foreach ($messages->all() as $message) {
+            notyf()->addError($message);
+        }
+        throw new HttpResponseException(back()->withInput()); // Dont give http error response because we need to display the error as a flash notification
     }
 }
