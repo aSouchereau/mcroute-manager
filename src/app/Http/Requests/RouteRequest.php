@@ -25,7 +25,7 @@ class RouteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'nickname' => ['nullable', 'min:2'],
+            'nickname' => 'nullable',
             'domain_name' => ['required', Rule::unique('routes','domain_name')->ignore($this->route('route')), 'regex:/^(([^:\/?#]*)(?:\:([0-9]+))?)$/'],
             'host' => ['required', 'regex:/^([0-9]{1,3}(\.[0-9]{1,3}){3}):[0-9]{1,5}/'],
             'group_id' => ['nullable', 'exists:groups,id', 'numeric']

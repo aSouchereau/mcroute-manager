@@ -24,7 +24,7 @@ class GroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'min:2', 'unique:groups,name,'. $this->segment(2)],
+            'name' => ['required', 'unique:groups,name,'. $this->segment(2)],
             'description' => 'required'
         ];
     }
