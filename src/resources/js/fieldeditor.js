@@ -79,3 +79,28 @@ function validateFormData(formId) {
         document.getElementById(formId).submit();
     }
 }
+
+
+function validateDomain(formId) {
+    const regex = new RegExp('^(([^:\\/?#]*)(?:\\:([0-9]+))?)$');
+    let input = document.querySelector(`[form="${formId}"][name="domain_name"]`);
+    let value = input.getAttribute('value');
+    if (!value) {
+        return {
+            status: false,
+            errorMsg: "Source domain is required",
+            element: input
+        }
+    } else if (!regex.test(value)) {
+        return {
+            status: false,
+            errorMsg: "Enter a valid source domain",
+            element: input
+        }
+    } else {
+        return {
+            status: true,
+            errorMsg: null
+        }
+    }
+}
