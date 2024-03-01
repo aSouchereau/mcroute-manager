@@ -97,12 +97,38 @@ function validateDomain(formId) {
         return {
             status: false,
             errorMsg: "Enter a valid source domain",
-            element: input
+            element: inputElm
         }
     } else {
         return {
             status: true,
-            errorMsg: null
+            errorMsg: null,
+            element: inputElm
+        }
+    }
+}
+
+function validateHost(formId) {
+    const regex = new RegExp('^([0-9]{1,3}(\\.[0-9]{1,3}){3}):[0-9]{1,5}$');
+    let inputElm = document.querySelector(`[form="${formId}"][name="host"]`);
+    let value = inputElm.value;
+    if (!value) {
+        return {
+            status: false,
+            errorMsg: "Destination address is required",
+            element: inputElm
+        }
+    } else if (!regex.test(value)) {
+        return {
+            status: false,
+            errorMsg: "Enter a valid destination address and port",
+            element: inputElm
+        }
+    } else {
+        return {
+            status: true,
+            errorMsg: null,
+            element: inputElm
         }
     }
 }
