@@ -73,6 +73,16 @@ function validateFormData(formId) {
     if (firstError) {
         // call function to show error message under input box
         console.log(firstError.errorMsg);
+        errorFound.element.focus();
+        resultObjArray.forEach((result) => {
+            if (result.status === true) {
+                result.element.removeAttribute('data-validation-error');
+            } else {
+                console.log(result.element);
+                result.element.setAttribute('data-validation-error', "");
+            }
+        });
+        return false;
     }
     else {
         console.log("Form Submitted");
