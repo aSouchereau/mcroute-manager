@@ -81,15 +81,17 @@ function validateFormData(formId) {
 }
 
 
+
+/* *****    Route form     *******/
 function validateDomain(formId) {
-    const regex = new RegExp('^(([^:\\/?#]*)(?:\\:([0-9]+))?)$');
-    let input = document.querySelector(`[form="${formId}"][name="domain_name"]`);
-    let value = input.getAttribute('value');
+    const regex = new RegExp('^(([^:\\/?#]*)(?::([0-9]+))?)$');
+    let inputElm = document.querySelector(`[form="${formId}"][name="domain_name"]`);
+    let value = inputElm.value;
     if (!value) {
         return {
             status: false,
             errorMsg: "Source domain is required",
-            element: input
+            element: inputElm
         }
     } else if (!regex.test(value)) {
         return {
