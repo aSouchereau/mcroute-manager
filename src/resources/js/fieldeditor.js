@@ -80,8 +80,8 @@ function submitHandler(formId) {
     let result = formValidator(formId, [
         validateDomain(formId),
         validateHost(formId),
-        validateName(formId),
-        validateDescription(formId)
+        //validateName(formId),
+        //validateDescription(formId)
     ]);
 
     if (result) {
@@ -102,7 +102,6 @@ function formValidator(formId, resultObjArray) {
             if (result.status === true) {
                 result.element.removeAttribute('data-validation-error');
             } else {
-                console.log(result.element);
                 result.element.setAttribute('data-validation-error', "");
                 const errorTooltip = new bootstrap.Tooltip(result.element, {
                     html: true,
