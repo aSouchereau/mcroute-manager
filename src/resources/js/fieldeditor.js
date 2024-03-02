@@ -53,6 +53,15 @@ function toggleButtonSet(formId) {
          Form Validation
 *********************************/
 const saveBtnList = document.querySelectorAll('[data-field-editor="save-button"]');
+const cancelBtnList = document.querySelectorAll('[data-field-editor="cancel-button"]');
+
+/* Clear validation error css on form cancel */
+cancelBtnList.forEach((btn) => {
+    let formId = btn.getAttribute('data-target-form-id');
+    btn.addEventListener('click', function () {
+        removeErrorStyles(formId)
+    });
+});
 
 saveBtnList.forEach( (btn) => {
     btn.addEventListener('click', function (e) {
@@ -97,11 +106,17 @@ function formValidator(formId, resultObjArray) {
         return false;
     }
     else {
-        console.log("Form Submitted");
-        document.getElementById(formId).submit();
+        removeErrorStyles(formId);
+        return true;
     }
 }
 
+function removeErrorStyles(formId) {
+    let inputList = document.querySelectorAll(`input[form="row-form-${formId}"]`)
+    inputList.forEach((element) => {
+        element.removeAttribute('data-validation-error');
+    });
+}
 
 
 /* *****    Route form     *******/
