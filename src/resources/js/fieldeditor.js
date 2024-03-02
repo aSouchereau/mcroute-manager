@@ -57,22 +57,34 @@ const saveBtnList = document.querySelectorAll('[data-field-editor="save-button"]
 saveBtnList.forEach( (btn) => {
     btn.addEventListener('click', function (e) {
         e.preventDefault();
-        validateFormData(btn.getAttribute('form'));
+        submitHandler(btn.getAttribute('form'), btn);
     });
 });
 
-function validateFormData(formId) {
+
+function submitHandler(formId, btnElm) {
     console.log(formId);
-    let validationStatusArr = [
+
+    let result = formValidator(formId, [
         validateDomain(formId),
         validateHost(formId),
         validateName(formId),
         validateDescription(formId)
-    ]
-    let firstError = validationStatusArr.find(obj => obj && obj.status === false);
-    if (firstError) {
+    ]);
+
+    if (result) {
+        btnElm.submit();
+        console.log("Form Submitted");
+    }
+}
+
+function formValidator(formId, resultObjArray) {
+
+    let errorFound = resultObjArray.find(obj => obj && obj.status === false);
+    if (errorFound) {
+
         // call function to show error message under input box
-        console.log(firstError.errorMsg);
+        console.log(errorFound.errorMsg);
         errorFound.element.focus();
         resultObjArray.forEach((result) => {
             if (result.status === true) {
