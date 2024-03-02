@@ -123,9 +123,14 @@ function formValidator(formId, resultObjArray) {
 }
 
 function removeErrorStyles(formId) {
-    let inputList = document.querySelectorAll(`input[form="row-form-${formId}"]`)
+    let inputList = document.querySelectorAll(`input[form="row-form-${formId}"]`);
     inputList.forEach((element) => {
-        element.removeAttribute('data-validation-error');
+        if (element.hasAttribute('data-validation-error')) {
+            element.removeAttribute('data-validation-error');
+            const tooltip = bootstrap.Tooltip.getInstance(element);
+            tooltip.hide();
+            tooltip.dispose();
+        }
     });
 }
 
