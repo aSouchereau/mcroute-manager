@@ -108,6 +108,16 @@ select.form-select[readonly] {
     padding-left: 0;
 }
 
+input[data-validation-error] {
+    border: 1px solid red !important;
+    outline: none;
+}
+
+input[data-validation-error]:focus {
+    box-shadow: none;
+    outline: solid rgba(255, 39, 39, 0.5) !important;
+}
+
 
 /* Fixes plaintext growing when toggled*/
 .home-resource-table td .form-control, .home-resource-table .form-select {
