@@ -66,12 +66,12 @@ cancelBtnList.forEach((btn) => {
 saveBtnList.forEach( (btn) => {
     btn.addEventListener('click', function (e) {
         e.preventDefault();
-        submitHandler(btn.getAttribute('form'), btn);
+        submitHandler(btn.getAttribute('form'));
     });
 });
 
 
-function submitHandler(formId, btnElm) {
+function submitHandler(formId) {
     console.log(formId);
 
     let result = formValidator(formId, [
@@ -82,7 +82,7 @@ function submitHandler(formId, btnElm) {
     ]);
 
     if (result) {
-        btnElm.submit();
+        document.getElementById(formId).submit();
         console.log("Form Submitted");
     }
 }
