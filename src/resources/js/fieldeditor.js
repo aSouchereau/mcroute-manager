@@ -1,3 +1,6 @@
+import * as bootstrap from 'bootstrap';
+window.bootstrap = bootstrap;
+
 const btnList = document.querySelectorAll(
     '[data-field-editor="edit-button"],[data-field-editor="create-button"],[data-field-editor="cancel-button"]');
 
@@ -101,6 +104,14 @@ function formValidator(formId, resultObjArray) {
             } else {
                 console.log(result.element);
                 result.element.setAttribute('data-validation-error', "");
+                const errorTooltip = new bootstrap.Tooltip(result.element, {
+                    html: true,
+                    placement: 'top',
+                    customClass: 'error-tooltip',
+                    title: result.errorMsg,
+                    trigger: 'focus'
+                });
+                errorTooltip.show();
             }
         });
         return false;
