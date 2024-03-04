@@ -62,7 +62,7 @@ const cancelBtnList = document.querySelectorAll('[data-field-editor="cancel-butt
 cancelBtnList.forEach((btn) => {
     let formId = btn.getAttribute('data-target-form-id');
     btn.addEventListener('click', function () {
-        removeErrorStyles(formId)
+        removeAllErrorStyles(formId);
     });
 });
 
@@ -91,16 +91,15 @@ function submitHandler(formId) {
 }
 
 function formValidator(formId, resultObjArray) {
-
     let errorFound = resultObjArray.find(obj => obj && obj.status === false);
-    if (errorFound) {
 
+    if (errorFound) {
         // call function to show error message under input box
         console.log(errorFound.errorMsg);
         errorFound.element.focus();
         resultObjArray.forEach((result) => {
             if (result.status === true) {
-                result.element.removeAttribute('data-validation-error');
+                removeErrorStyles(result.element);
             } else {
                 result.element.setAttribute('data-validation-error', "");
                 const errorTooltip = new bootstrap.Tooltip(result.element, {
@@ -116,20 +115,30 @@ function formValidator(formId, resultObjArray) {
         return false;
     }
     else {
-        removeErrorStyles(formId);
+        removeAllErrorStyles(formId);
         return true;
     }
 }
 
-function removeErrorStyles(formId) {
+function removeErrorStyles(element) {
+    if (element.hasAttribute('data-validation-error')) {
+        element.removeAttribute('data-validation-error');
+    }
+    const tooltip = bootstrap.Tooltip.getInstance(element);
+    if (tooltip) {
+        tooltip.hide();
+        //TODO fix this somehow
+        tooltip.dispose();
+        /* dispose function call causing type error when attempting to destroy tooltip instance,
+        the tooltip still becomes hidden from user so not an issue,
+        however having multiple useless instances of old tooltips isn't ideal  */
+    }
+}
+
+function removeAllErrorStyles(formId) {
     let inputList = document.querySelectorAll(`input[form="row-form-${formId}"]`);
     inputList.forEach((element) => {
-        if (element.hasAttribute('data-validation-error')) {
-            element.removeAttribute('data-validation-error');
-            const tooltip = bootstrap.Tooltip.getInstance(element);
-            tooltip.hide();
-            tooltip.dispose();
-        }
+        removeErrorStyles(element);
     });
 }
 
