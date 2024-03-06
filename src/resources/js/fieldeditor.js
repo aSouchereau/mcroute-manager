@@ -67,26 +67,39 @@ cancelBtnList.forEach((btn) => {
 });
 
 saveBtnList.forEach( (btn) => {
+    let table = document.querySelector('section#content table');
     btn.addEventListener('click', function (e) {
         e.preventDefault();
-        submitHandler(btn.getAttribute('form'));
+        if (table.getAttribute('id') === 'routes') {
+            submitRouteHandler(btn.getAttribute('form'));
+        } else {
+            submitGroupHandler(btn.getAttribute('form'));
+        }
     });
 });
 
 
-function submitHandler(formId) {
-    console.log(formId);
+function submitRouteHandler(formId) {
 
     let result = formValidator(formId, [
         validateDomain(formId),
-        validateHost(formId),
-        //validateName(formId),
-        //validateDescription(formId)
+        validateHost(formId)
     ]);
 
     if (result) {
         document.getElementById(formId).submit();
-        console.log("Form Submitted");
+    }
+}
+
+function submitGroupHandler(formId) {
+
+    let result = formValidator(formId, [
+        validateName(formId),
+        validateDescription(formId)
+    ]);
+
+    if (result) {
+        document.getElementById(formId).submit();
     }
 }
 
