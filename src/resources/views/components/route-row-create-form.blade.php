@@ -59,13 +59,5 @@
             <x-cancel-button fieldId="new"></x-cancel-button>
         </div>
     </td>
-
-
-    @if ($errors->any())
-        @foreach($errors->all() as $error)
-            <!-- TODO replace message with error toast-->
-            {{ $error }}<br>
-        @endforeach
-    @endif
 </tr>
 
