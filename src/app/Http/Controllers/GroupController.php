@@ -53,7 +53,7 @@ class GroupController extends Controller
     public function update(GroupRequest $request, Group $group): RedirectResponse
     {
         $formData = $request->all();
-        $group = Group::findOrFail($group);
+        $group = Group::findOrFail($group->id);
         $group->update($formData);
 
         return redirect('groups');
@@ -64,7 +64,7 @@ class GroupController extends Controller
      */
     public function destroy(Group $group): RedirectResponse
     {
-        $group = Group::findOrFail($group);
+        $group = Group::findOrFail($group->id);
         $group->delete();
 
         return redirect('groups');

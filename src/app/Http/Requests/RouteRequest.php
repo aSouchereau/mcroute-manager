@@ -5,8 +5,9 @@ namespace App\Http\Requests;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
-class GroupRequest extends FormRequest
+class RouteRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +25,14 @@ class GroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'unique:groups,name,'. $this->segment(2)],
-            'description' => 'required'
+            'nickname' => 'nullable',
+            'domain_name' => ['required', Rule::unique('routes','domain_name')->ignore($this->route('route')), 'regex:/^(([^:\/?#]*)(?:\:([0-9]+))?)$/'],
+            'host' => ['required', 'regex:/^([0-9]{1,3}(\.[0-9]{1,3}){3}):[0-9]{1,5}/'],
+            'group_id' => ['nullable', 'exists:groups,id', 'numeric']
         ];
     }
 
-    /**
-     * Overwrite failedValidation method
-     * @throws HttpResponseException
-     */
-    protected function failedValidation(Validator $validator)
+    public function failedValidation(Validator $validator)
     {
         $messages = $validator->getMessageBag();
         foreach ($messages->all() as $message) {

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('routes', function (Blueprint $table) {
             $table->id();
-            $table->string('nickname');
+            $table->string('nickname')->nullable();
             $table->string('domain_name')->unique();
             $table->string('host');
             $table->boolean('enabled')->default(true);

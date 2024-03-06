@@ -34,7 +34,7 @@
 .home-resource-table td:first-of-type {
     font-weight: 500;
 }
-.home-resource-table tr:last-of-type td {
+.home-resource-table tr:last-of-type td, .home-resource-table tr:nth-last-of-type(2) td {
     border-bottom: none;
 }
 
@@ -106,6 +106,16 @@ select.form-select[readonly] {
     border: 1px solid transparent;
     padding-right: 0;
     padding-left: 0;
+}
+
+input[data-validation-error] {
+    border: 1px solid red !important;
+    outline: none;
+}
+
+input[data-validation-error]:focus {
+    box-shadow: none;
+    outline: solid rgba(255, 39, 39, 0.5) !important;
 }
 
 

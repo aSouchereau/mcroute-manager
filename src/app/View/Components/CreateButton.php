@@ -5,22 +5,22 @@ namespace App\View\Components;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Group;
 
-class RouteCreateModal extends Component
+class CreateButton extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct() {
-    }
+    public function __construct(
+        public string $name
+    ) {}
 
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): View|Closure|string
     {
-        $groups = Group::all();
-        return view('components.route-create-modal', compact('groups'));
+        $name = $this->name;
+        return view('components.create-button', compact( 'name'));
     }
 }
