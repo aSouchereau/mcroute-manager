@@ -193,3 +193,41 @@ function validateHost(formId) {
         }
     }
 }
+
+
+/* *****    Group form     *******/
+function validateName(formId) {
+    let inputElm = document.querySelector(`[form="${formId}"][name="name"]`);
+    let value = inputElm.value;
+    if (!value) {
+        return {
+            status: false,
+            errorMsg: "Group name is required",
+            element: inputElm
+        }
+    } else {
+        return {
+            status: true,
+            errorMsg: null,
+            element: inputElm
+        }
+    }
+}
+
+function validateDescription(formId) {
+    let inputElm = document.querySelector(`[form="${formId}"][name="description"]`);
+    let value = inputElm.value;
+    if (!value) {
+        return {
+            status: false,
+            errorMsg: "Description is required",
+            element: inputElm
+        }
+    } else {
+        return {
+            status: true,
+            errorMsg: null,
+            element: inputElm
+        }
+    }
+}
