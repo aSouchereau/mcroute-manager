@@ -23,14 +23,6 @@ class RouteController extends Controller
         return view('routes.index', compact('routes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create(): View
-    {
-        $groups = Group::all();
-        return view('routes.create', compact('groups'));
-    }
 
     /**
      * Store a newly created resource in storage.
@@ -108,12 +100,4 @@ class RouteController extends Controller
         return redirect('routes');
     }
 
-    /*
-     * Temporary edit method
-     */
-    public function edit($route) {
-        $route = Route::findOrfail($route);
-
-        return view('routes.edit', compact('route'));
-    }
 }
