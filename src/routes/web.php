@@ -20,9 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [RouteController::class, 'index'])->name('index');
 
 Route::group(['as' => 'groups.', 'prefix' => 'groups'], function () {
-   Route::get('create', [GroupController::class, 'create'])->name('create');
    Route::post('', [GroupController::class, 'store'])->name('store');
-   Route::get('{group}/edit', [GroupController::class, 'edit'])->name('edit');
    Route::patch('{group}', [GroupController::class, 'update'])->name('update');
    Route::delete('{group}', [GroupController::class, 'destroy'])->name('delete');
    Route::get('', [GroupController::class, 'index'])->name('index');
@@ -30,10 +28,7 @@ Route::group(['as' => 'groups.', 'prefix' => 'groups'], function () {
 
 Route::group(['as' => 'routes.', 'prefix' => 'routes'], function () {
     Route::patch('{route}/status', [RouteController::class, 'toggle'])->name('toggle');
-    Route::get('create', [RouteController::class, 'create'])->name('create');
     Route::post('', [RouteController::class, 'store'])->name('store');
-    // Temporary edit route
-    Route::get('{route}/edit', [RouteController::class, 'edit'])->name('edit');
     Route::patch('{route}', [RouteController::class, 'update'])->name('update');
     Route::delete('{route}', [RouteController::class, 'destroy'])->name('delete');
     Route::get('', [RouteController::class, 'index'])->name('index');
