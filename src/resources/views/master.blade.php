@@ -44,7 +44,7 @@
                     <a id="main-nav-logo" href="{{route('index')}}">
                         MC Route Manager
                     </a>
-                    <span>v{{file_get_contents('./../VERSION')}}</span>
+                    <span>v{{file_get_contents(public_path() . '/VERSION')}}</span>
                 </div>
                 <div class="footer-links-wrapper">
                     <a href="https://github.com/aSouchereau/mcroute-manager" class="link-primary">View Project on GitHub</a>
