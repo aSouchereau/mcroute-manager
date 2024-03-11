@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SyncRouterController;
@@ -17,10 +18,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [RouteController::class, 'index'])->name('index');
+Route::get('/', [LoginController::class, 'getLoginForm'])->name('index');
 
 Route::get('login', [LoginController::class, 'getLoginForm'])->name('login');
 Route::post('login', [LoginController::class, 'login'])->name('login.post');
+
+Route::get('register', [RegisterController::class, 'getRegistrationForm'])->name('register');
+Route::post('register', [RegisterController::class, 'register'])->name('register.post');
 
 
 Route::group(['as' => 'groups.', 'prefix' => 'groups', 'middleware' => ['auth']], function () {
