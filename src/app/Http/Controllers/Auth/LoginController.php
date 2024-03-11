@@ -12,8 +12,11 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function getLoginForm(): Factory|View|Application
+    public function getLoginForm(): Factory|View|Application|RedirectResponse
     {
+        if (Auth::check()) {
+            return redirect('routes');
+        }
         return view('auth.login');
     }
 
