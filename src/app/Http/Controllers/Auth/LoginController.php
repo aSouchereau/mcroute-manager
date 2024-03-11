@@ -19,10 +19,14 @@ class LoginController extends Controller
 
     public function login(Request $request): RedirectResponse
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->validate([
+            'email' => ['required', 'email'],
+            'password' => ['required']
+        ]);
 
         if (Auth::attempt($credentials, $request->has('remember'))) {
-            return redirect()->intended();
+            $request->session()->regenerate();
+            return redirect('/routes');
         }
 
         return back()->withErrors(['email' => 'Invalid credentials'])->withInput($request->only('email'));
