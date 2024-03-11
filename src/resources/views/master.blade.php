@@ -26,7 +26,10 @@
                         <a href="{{route('index')}}" class="main-nav-item">Home</a>
                         <a href="{{route('index')}}" class="main-nav-item">Logs</a>
                         <a href="{{route('index')}}" class="main-nav-item">Settings</a>
-                        <a href="{{route('index')}}" class="main-nav-item">Logout</a>
+                        <form action="{{route('logout')}}" method="post">
+                            @csrf
+                            <button type="submit" class="main-nav-item">Logout</button>
+                        </form>
                     </div>
                 </nav>
             </header>
