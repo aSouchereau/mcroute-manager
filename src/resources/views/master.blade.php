@@ -23,12 +23,12 @@
                         MC Route Manager
                     </a>
                     <div id="main-nav-list">
-                        <a href="{{route('index')}}" class="main-nav-item">Home</a>
-                        <a href="{{route('index')}}" class="main-nav-item">Logs</a>
-                        <a href="{{route('index')}}" class="main-nav-item">Settings</a>
+                        <a href="{{route('index')}}" class="btn main-nav-item">Home</a>
+                        <a href="{{route('index')}}" class="btn main-nav-item">Logs</a>
+                        <a href="{{route('index')}}" class="btn main-nav-item">Settings</a>
                         <form action="{{route('logout')}}" method="post">
                             @csrf
-                            <button type="submit" class="main-nav-item">Logout</button>
+                            <button type="submit" class="btn btn-outline-danger">Logout</button>
                         </form>
                     </div>
                 </nav>

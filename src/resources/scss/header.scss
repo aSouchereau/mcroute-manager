@@ -39,10 +39,10 @@ header#main {
 }
 
 .main-nav-item {
-    font-family: var(--body-font);
-    font-size: 0.87rem;
-    font-weight: 700;
-    color: var(--dark-grey);
+    font-family: var(--body-font) !important;
+    font-size: 0.87rem !important;
+    font-weight: 700 !important;
+    color: var(--dark-grey) !important;
 }
 
 /*
