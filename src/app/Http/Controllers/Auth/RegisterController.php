@@ -19,6 +19,10 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
+        if (User::query()->where('role', '=', 'admin')) {
+            abort(403, 'An admin account already exists.');
+        }
+
         $formData = $request->all();
 
         $user = User::create([
