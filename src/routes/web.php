@@ -28,14 +28,14 @@ Route::get('register', [RegisterController::class, 'getRegistrationForm'])->name
 Route::post('register', [RegisterController::class, 'register'])->name('register.post');
 
 
-Route::group(['as' => 'groups.', 'prefix' => 'groups', 'middleware' => ['auth']], function () {
+Route::group(['as' => 'groups.', 'prefix' => 'groups', 'middleware' => ['auth', 'is.admin']], function () {
    Route::post('', [GroupController::class, 'store'])->name('store');
    Route::patch('{group}', [GroupController::class, 'update'])->name('update');
    Route::delete('{group}', [GroupController::class, 'destroy'])->name('delete');
    Route::get('', [GroupController::class, 'index'])->name('index');
 });
 
-Route::group(['as' => 'routes.', 'prefix' => 'routes', 'middleware' => ['auth']], function () {
+Route::group(['as' => 'routes.', 'prefix' => 'routes', 'middleware' => ['auth', 'is.admin']], function () {
     Route::patch('{route}/status', [RouteController::class, 'toggle'])->name('toggle');
     Route::post('', [RouteController::class, 'store'])->name('store');
     Route::patch('{route}', [RouteController::class, 'update'])->name('update');
@@ -43,4 +43,6 @@ Route::group(['as' => 'routes.', 'prefix' => 'routes', 'middleware' => ['auth']]
     Route::get('', [RouteController::class, 'index'])->name('index');
 });
 
-Route::post('jobs/sync', [SyncRouterController::class, 'sync'])->name('jobs.sync');
+Route::group(['as' => 'jobs.', 'prefix' => 'jobs', 'middleware' => ['auth', 'is.admin']], function () {
+    Route::post('sync', [SyncRouterController::class, 'sync'])->name('sync');
+});
