@@ -13,7 +13,7 @@ class InstallerController extends Controller
 {
     public function welcome(): Factory|View|Application
     {
-        return view('install.welcome');
+        return view('installer.welcome');
     }
     public function success()
     {
