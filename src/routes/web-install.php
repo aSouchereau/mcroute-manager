@@ -13,4 +13,5 @@ Route::group(['as' => 'install.', 'prefix' => 'install'], function () {
     Route::get('migrate', [MigrateController::class, 'view'])->name('migrate');
     Route::get('register', [RegisterAdminController::class, 'view'])->name('register');
     Route::post('register', [RegisterAdminController::class, 'register'])->name('register.post');
+    Route::get('success', [InstallerController::class, 'success'])->name('success');
 });
