@@ -17,30 +17,33 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::group(['middleware' => ['install.req']], function () {
+    Route::get('login', [LoginController::class, 'getLoginForm'])->name('login');
+    Route::post('login', [LoginController::class, 'login'])->name('login.post');
+    Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::get('/', [LoginController::class, 'getLoginForm'])->name('index');
+    Route::group(['middleware' => ['auth', 'is.admin']], function () {
+        Route::get('/', [RouteController::class, 'index'])->name('index');
 
-Route::get('login', [LoginController::class, 'getLoginForm'])->name('login');
-Route::post('login', [LoginController::class, 'login'])->name('login.post');
-Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+        Route::group(['as' => 'groups.', 'prefix' => 'groups', 'middleware' => ['auth', 'is.admin']], function () {
+            Route::post('', [GroupController::class, 'store'])->name('store');
+            Route::patch('{group}', [GroupController::class, 'update'])->name('update');
+            Route::delete('{group}', [GroupController::class, 'destroy'])->name('delete');
+            Route::get('', [GroupController::class, 'index'])->name('index');
+        });
+
+        Route::group(['as' => 'routes.', 'prefix' => 'routes', 'middleware' => ['auth', 'is.admin']], function () {
+            Route::patch('{route}/status', [RouteController::class, 'toggle'])->name('toggle');
+            Route::post('', [RouteController::class, 'store'])->name('store');
+            Route::patch('{route}', [RouteController::class, 'update'])->name('update');
+            Route::delete('{route}', [RouteController::class, 'destroy'])->name('delete');
+            Route::get('', [RouteController::class, 'index'])->name('index');
+        });
+
+        Route::group(['as' => 'jobs.', 'prefix' => 'jobs', 'middleware' => ['auth', 'is.admin']], function () {
+            Route::post('sync', [SyncRouterController::class, 'sync'])->name('sync');
+        });
+    });
 
 
-
-Route::group(['as' => 'groups.', 'prefix' => 'groups', 'middleware' => ['auth', 'is.admin']], function () {
-   Route::post('', [GroupController::class, 'store'])->name('store');
-   Route::patch('{group}', [GroupController::class, 'update'])->name('update');
-   Route::delete('{group}', [GroupController::class, 'destroy'])->name('delete');
-   Route::get('', [GroupController::class, 'index'])->name('index');
-});
-
-Route::group(['as' => 'routes.', 'prefix' => 'routes', 'middleware' => ['auth', 'is.admin']], function () {
-    Route::patch('{route}/status', [RouteController::class, 'toggle'])->name('toggle');
-    Route::post('', [RouteController::class, 'store'])->name('store');
-    Route::patch('{route}', [RouteController::class, 'update'])->name('update');
-    Route::delete('{route}', [RouteController::class, 'destroy'])->name('delete');
-    Route::get('', [RouteController::class, 'index'])->name('index');
-});
-
-Route::group(['as' => 'jobs.', 'prefix' => 'jobs', 'middleware' => ['auth', 'is.admin']], function () {
-    Route::post('sync', [SyncRouterController::class, 'sync'])->name('sync');
 });
