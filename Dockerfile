@@ -64,6 +64,9 @@ COPY --chown=mcroutemanager scripts /usr/local/bin/
 # Add application
 COPY --chown=mcroutemanager src /var/www/html/
 
+# Create Log File
+RUN touch /var/www/html/storage/logs/laravel.log && chown -R mcroutemanager.mcroutemanager /var/www/html/storage/logs/laravel.log
+
 # Run composer install to install the dependencies
 RUN composer install --optimize-autoloader --no-interaction --no-progress
 
