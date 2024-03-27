@@ -36,12 +36,23 @@ class InstallationStatus
      *
      * @return mixed
      */
-    public function handle(Request $request, \Closure $next): mixed
+    public function handle(Request $request, \Closure $next, string $requiredStatus): mixed
     {
-        if ($this->isInstalled->assert()) {
-            return $next($request);
+        if ($requiredStatus === 'complete') {
+            if ($this->isInstalled->assert()) {
+                return $next($request);
+            } else {
+                return redirect('/install');
+            }
+        } elseif ($requiredStatus === 'incomplete') {
+            if ($this->isInstalled->assert()) {
+                return redirect('/login');
+            } else {
+                return $next($request);
+            }
         } else {
-            return redirect('/install');
+            throw new \InvalidArgumentException('$requiredStatus must either be "complete" or "incomplete"');
         }
+
     }
 }
