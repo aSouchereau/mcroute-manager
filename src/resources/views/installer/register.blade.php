@@ -1,26 +1,27 @@
 @extends('installer.view')
 @section('installer-content')
 
-<form method="POST" action="{{ route('install.register.post') }}">
+<form method="POST" action="{{ route('install.register.post') }}" class="w-50 mx-auto mt-4">
     @csrf
-    <div>
-        <label for="name">Name</label>
-        <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus>
+    <h1 class="mb-3">Register Admin Account</h1>
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input id="name" type="text" name="name" class="form-control" value="{{ old('name') }}" placeholder="Your Name" required autofocus>
     </div>
 
-    <div>
-        <label for="email">Email</label>
-        <input id="email" type="email" name="email" value="{{ old('email') }}" required>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input id="email" type="email" name="email" class="form-control" placeholder="a123@example.com" value="{{ old('email') }}" required>
     </div>
 
-    <div>
-        <label for="password">Password</label>
-        <input id="password" type="password" name="password" required autocomplete="new-password">
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input id="password" type="password" name="password" class="form-control" required autocomplete="new-password">
     </div>
 
-    <div>
-        <label for="password_confirmation">Confirm Password</label>
-        <input id="password_confirmation" type="password" name="password_confirmation" required>
+    <div class="mb-3">
+        <label for="password_confirmation" class="form-label">Confirm Password</label>
+        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
     </div>
 
     @if($errors->any())
@@ -29,7 +30,7 @@
         @endforeach
     @endif
     <div>
-        <button type="submit">Register</button>
+        <button type="submit" class="btn btn-success w-100">Register</button>
     </div>
 </form>
 @endsection
