@@ -15,9 +15,9 @@ class InstallerController extends Controller
     {
         return view('installer.welcome');
     }
-    public function success()
+    public function success(): Factory|View|Application
     {
-
+        return view('installer.success');
     }
 
 }
