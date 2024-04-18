@@ -22,7 +22,7 @@
     <header id="main">
         <nav id="main-nav" class="container">
             <a id="main-nav-logo" href="{{route('index')}}">
-                MC Route Manager
+                <img src="/img/wordmark.svg" alt="mcroutemanager logo">
             </a>
             @if(Auth::check())
                 <div id="main-nav-list">
@@ -49,7 +49,7 @@
     <div class="footer-content container">
         <div class="footer-info-wrapper">
             <a id="main-nav-logo" href="{{route('index')}}">
-                MC Route Manager
+                <img src="/img/wordmark.svg" alt="mcroutemanager logo">
             </a>
             <span>v{{file_get_contents(public_path() . '/VERSION')}}</span>
         </div>
