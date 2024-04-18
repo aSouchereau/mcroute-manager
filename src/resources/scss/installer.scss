@@ -4,7 +4,8 @@
 }
 .installer-body {
     display: flex;
-    justify-content: space-around;
+    justify-content: left;
+    font-family: var(--body-font);
 }
 .installer-body .logo {
     text-align: center;
@@ -12,4 +13,7 @@
 }
 .installer-body .logo img {
     width: 50%;
+}
+.installer-buttons {
+    margin-top: 1rem;
 }
