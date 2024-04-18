@@ -16,6 +16,6 @@ div.footer-content {
 
 div.footer-info-wrapper {
     display: flex;
-    align-items: baseline;
+    align-items: center;
     gap: 2em;
 }
