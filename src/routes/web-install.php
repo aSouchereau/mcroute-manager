@@ -13,5 +13,6 @@ Route::group(['as' => 'install.', 'prefix' => 'install', 'middleware' => ['insta
     Route::get('migrate', [MigrateController::class, 'view'])->name('migrate');
     Route::get('register', [RegisterAdminController::class, 'view'])->name('register');
     Route::post('register', [RegisterAdminController::class, 'register'])->name('register.post');
-    Route::get('success', [InstallerController::class, 'success'])->name('success');
 });
+
+Route::get('install/success', [InstallerController::class, 'success', 'middleware' => ['install:complete']])->name('install.success');
