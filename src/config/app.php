@@ -49,7 +49,7 @@ return [
     |--------------------------------------------------------------------------
     |
     | When your application is in demo mode, a demo account will be created and all login
-    | forms will be populated with the credentials. The app will create and use a demo database schema.
+    | forms will be populated with the credentials. The app will create and use a demo sqlite database.
     | It will autopopulate it with example data and reset every hour.
     |
     */
