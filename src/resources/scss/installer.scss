@@ -1,0 +1,19 @@
+.installer-header {
+    font-family: var(--body-font);
+    margin-bottom: 2rem;
+}
+.installer-body {
+    display: flex;
+    justify-content: left;
+    font-family: var(--body-font);
+}
+.installer-body .logo {
+    text-align: center;
+    width: 20vw;
+}
+.installer-body .logo img {
+    width: 50%;
+}
+.installer-buttons {
+    margin-top: 1rem;
+}

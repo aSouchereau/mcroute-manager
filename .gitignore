@@ -20,3 +20,4 @@
 /src/node_modules/
 /src/vendor/
 docker-compose.yaml
+.env
