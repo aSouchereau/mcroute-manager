@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
+use App\Http\Controllers\Demo\DemoController;
 use App\Http\Controllers\GroupController;
 use App\Http\Controllers\RouteController;
 use App\Http\Controllers\SyncRouterController;
@@ -17,7 +18,11 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::group(['middleware' => ['install:complete']], function () {
+Route::group(['as' => 'demo.', 'prefix' => 'demo'], function () {
+   Route::get('welcome', [DemoController::class, 'welcome'])->name('welcome');
+});
+
+Route::group(['middleware' => ['install:complete', 'demoRedirect']], function () {
     Route::get('login', [LoginController::class, 'getLoginForm'])->name('login');
     Route::post('login', [LoginController::class, 'login'])->name('login.post');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
