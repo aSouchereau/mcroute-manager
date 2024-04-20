@@ -26,7 +26,7 @@ class RedirectIfDemoMode
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($this->isDemoMode->assert()) {
+        if ($this->isDemoMode->assert() && !$this->isInstalled->assert()) {
             return redirect('/demo/welcome');
         }
 
