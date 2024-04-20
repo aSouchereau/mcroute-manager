@@ -95,7 +95,7 @@ return [
 
         'demo' => [
             'driver' => 'sqlite',
-            'database' => env('DEMO_DATABASE', database_path('database.sqlite')),
+            'database' => env('DEMO_DATABASE', database_path('demo.sqlite')),
             'foreign_key_constraints' => true,
         ],
 
