@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Demo;
 
-use App\Actions\Demo\ChangeDatabaseConnection;
 use App\Actions\Demo\CreateDemoDatabase;
 use App\Actions\Demo\SeedDatabase;
 use App\Actions\Installer\Migrator;
@@ -58,8 +57,11 @@ class DemoController extends Controller
         ]);
     }
 
-    public function login()
+    public function login(): Factory|View|Application
     {
-
+        return view('demo.login', [
+            'demoEmail' => 'demo@example.com',
+            'demoPassword' => '!DEMOUSER111',
+        ]);
     }
 }
