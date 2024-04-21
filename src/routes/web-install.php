@@ -7,7 +7,7 @@ use App\Http\Controllers\Installer\RegisterAdminController;
 use App\Http\Controllers\Installer\RouterConnectionController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['as' => 'install.', 'prefix' => 'install', 'middleware' => ['install:incomplete']], function () {
+Route::group(['as' => 'install.', 'prefix' => 'install', 'middleware' => ['install:incomplete', 'demoRedirect']], function () {
     Route::get('/', [InstallerController::class, 'welcome'])->name('welcome');
     Route::get('router', [RouterConnectionController::class, 'view'])->name('router');
     Route::get('migrate', [MigrateController::class, 'view'])->name('migrate');
@@ -15,4 +15,4 @@ Route::group(['as' => 'install.', 'prefix' => 'install', 'middleware' => ['insta
     Route::post('register', [RegisterAdminController::class, 'register'])->name('register.post');
 });
 
-Route::get('install/success', [InstallerController::class, 'success', 'middleware' => ['install:complete']])->name('install.success');
+Route::get('install/success', [InstallerController::class, 'success', 'middleware' => ['install:complete', 'demoRedirect']])->name('install.success');
