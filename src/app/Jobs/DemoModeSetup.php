@@ -6,7 +6,6 @@ use App\Actions\Demo\CreateDemoDatabase;
 use App\Actions\Demo\SeedDatabase;
 use App\Actions\Installer\Migrator;
 use App\Actions\Installer\RegisterAdmin;
-use App\Http\Middleware\Checks\IsInstalled;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -14,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 
-class DemoModeSetup implements ShouldBeUnique
+class DemoModeSetup implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
