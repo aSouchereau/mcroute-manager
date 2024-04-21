@@ -12,7 +12,6 @@ use App\Http\Middleware\Checks\IsInstalled;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
 
 class DemoController extends Controller
 {
@@ -38,7 +37,7 @@ class DemoController extends Controller
     public function welcome(): Factory|View|Application
     {
         return view('demo.welcome', [
-            'isInstalled' => $this->isInstalled,
+            'isInstalled' => $this->isInstalled->assert(),
         ]);
     }
 
