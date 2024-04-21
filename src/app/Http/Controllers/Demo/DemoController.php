@@ -8,28 +8,17 @@ use App\Actions\Installer\Migrator;
 use App\Actions\Installer\RegisterAdmin;
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Checks\IsInstalled;
+use App\Jobs\DemoModeSetup;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 
 class DemoController extends Controller
 {
-    private CreateDemoDatabase $createDemoDatabase;
-    private Migrator $migrator;
-    private RegisterAdmin $registerAdmin;
-    private SeedDatabase $seedDatabase;
     private IsInstalled $isInstalled;
-    function __construct(
-        CreateDemoDatabase $createDemoDatabase,
-        Migrator $migrator,
-        RegisterAdmin $registerAdmin,
-        SeedDatabase $seedDatabase,
-        IsInstalled $isInstalled)
+    function __construct(IsInstalled $isInstalled)
     {
-        $this->createDemoDatabase = $createDemoDatabase;
-        $this->migrator = $migrator;
-        $this->registerAdmin = $registerAdmin;
-        $this->seedDatabase = $seedDatabase;
         $this->isInstalled = $isInstalled;
     }
 
@@ -42,19 +31,9 @@ class DemoController extends Controller
 
     public function setup(): Factory|View|Application
     {
-        $errors = [];
-        $this->createDemoDatabase->create();
-        $this->migrator->migrate();
-        $this->seedDatabase->seed();
-        $this->registerAdmin->create(
-            'Demo User',
-            'demo@example.com',
-            '!DEMOUSER111'
-        );
+        DemoModeSetup::dispatchSync();
 
-        return view('demo.setup', [
-            'errors' => $errors,
-        ]);
+        return view('demo.setup');
     }
 
     public function login(): Factory|View|Application
