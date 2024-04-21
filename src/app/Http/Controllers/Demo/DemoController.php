@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Demo;
 
 use App\Actions\Demo\ChangeDatabaseConnection;
 use App\Actions\Demo\CreateDemoDatabase;
+use App\Actions\Demo\SeedDatabase;
 use App\Actions\Installer\Migrator;
 use App\Actions\Installer\RegisterAdmin;
 use App\Http\Controllers\Controller;
@@ -17,14 +18,17 @@ class DemoController extends Controller
     private CreateDemoDatabase $createDemoDatabase;
     private Migrator $migrator;
     private RegisterAdmin $registerAdmin;
+    private SeedDatabase $seedDatabase;
     function __construct(
         CreateDemoDatabase $createDemoDatabase,
         Migrator $migrator,
-        RegisterAdmin $registerAdmin)
+        RegisterAdmin $registerAdmin,
+        SeedDatabase $seedDatabase)
     {
         $this->createDemoDatabase = $createDemoDatabase;
         $this->migrator = $migrator;
         $this->registerAdmin = $registerAdmin;
+        $this->seedDatabase = $seedDatabase;
     }
 
     public function welcome(): Factory|View|Application
@@ -37,6 +41,7 @@ class DemoController extends Controller
         $errors = [];
         $this->createDemoDatabase->create();
         $this->migrator->migrate();
+        $this->seedDatabase->seed();
         $this->registerAdmin->create(
             'Demo User',
             'demo@example.com',
