@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::group(['as' => 'demo.', 'prefix' => 'demo'], function () {
    Route::get('welcome', [DemoController::class, 'welcome'])->name('welcome');
    Route::get('setup', [DemoController::class, 'setup'])->name('setup');
+   Route::get('login', [DemoController::class, 'login'])->name('login');
 });
 
 Route::group(['middleware' => ['install:complete', 'demoRedirect']], function () {
