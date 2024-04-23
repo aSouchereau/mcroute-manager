@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Middleware\Checks\IsDemoMode;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -12,11 +13,22 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
+    private IsDemoMode $isDemoMode;
+
+    function __construct(IsDemoMode $isDemoMode)
+    {
+        $this->isDemoMode = $isDemoMode;
+    }
+
     public function getLoginForm(): Factory|View|Application|RedirectResponse
     {
         if (Auth::check()) {
             return redirect('routes');
         }
+        if ($this->isDemoMode->assert()) {
+            return redirect('/demo/welcome');
+        }
+
         return view('auth.login');
     }
 
