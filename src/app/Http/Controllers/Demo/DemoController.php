@@ -12,6 +12,8 @@ use App\Jobs\DemoModeSetup;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class DemoController extends Controller
@@ -22,8 +24,12 @@ class DemoController extends Controller
         $this->isInstalled = $isInstalled;
     }
 
-    public function welcome(): Factory|View|Application
+    public function welcome(): Factory|View|Application|RedirectResponse
     {
+        if (Auth::check()) {
+            return redirect('routes');
+        }
+
         return view('demo.welcome', [
             'isInstalled' => $this->isInstalled->assert(),
         ]);
@@ -36,8 +42,12 @@ class DemoController extends Controller
         return view('demo.setup');
     }
 
-    public function login(): Factory|View|Application
+    public function login(): Factory|View|Application|RedirectResponse
     {
+        if (Auth::check()) {
+            return redirect('routes');
+        }
+
         return view('demo.login', [
             'demoEmail' => 'demo@example.com',
             'demoPassword' => '!DEMOUSER111',

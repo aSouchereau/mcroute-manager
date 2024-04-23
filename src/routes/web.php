@@ -20,11 +20,11 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['as' => 'demo.', 'prefix' => 'demo'], function () {
    Route::get('welcome', [DemoController::class, 'welcome'])->name('welcome');
-   Route::get('setup', [DemoController::class, 'setup'])->name('setup');
-   Route::get('login', [DemoController::class, 'login'])->name('login');
+   Route::get('setup', [DemoController::class, 'setup'])->middleware('install:incomplete')->name('setup');
+   Route::get('login', [DemoController::class, 'login'])->middleware('install:complete')->name('login');
 });
 
-Route::group(['middleware' => ['install:complete', 'demoRedirect']], function () {
+Route::group(['middleware' => ['install:complete']], function () {
     Route::get('login', [LoginController::class, 'getLoginForm'])->name('login');
     Route::post('login', [LoginController::class, 'login'])->name('login.post');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
