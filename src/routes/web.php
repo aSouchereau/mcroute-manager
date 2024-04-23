@@ -24,7 +24,7 @@ Route::group(['as' => 'demo.', 'prefix' => 'demo'], function () {
    Route::get('login', [DemoController::class, 'login'])->name('login');
 });
 
-Route::group(['middleware' => ['install:complete', 'demoRedirect']], function () {
+Route::group(['middleware' => ['install:complete']], function () {
     Route::get('login', [LoginController::class, 'getLoginForm'])->name('login');
     Route::post('login', [LoginController::class, 'login'])->name('login.post');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
