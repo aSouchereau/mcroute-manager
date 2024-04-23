@@ -15,4 +15,4 @@ Route::group(['as' => 'install.', 'prefix' => 'install', 'middleware' => ['insta
     Route::post('register', [RegisterAdminController::class, 'register'])->name('register.post');
 });
 
-Route::get('install/success', [InstallerController::class, 'success', 'middleware' => ['install:complete']])->name('install.success');
+Route::get('install/success', [InstallerController::class, 'success'])->middleware('install:complete')->name('install.success');
