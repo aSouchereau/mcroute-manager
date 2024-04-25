@@ -2,7 +2,7 @@ name: Docker Hub Publish
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "master" ]
 
 env:
   IMAGE_NAME: asouchereau/mcroute-manager
