@@ -1,0 +1,31 @@
+name: Build and push to GHCR
+on:
+  push:
+    branches:
+      - main
+
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: asouchereau/mcroute-manager
+
+jobs:
+  push_to_ghcr:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Log in to ghcr.io
+        run: echo "${{ secrets.GHCR_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      - name: Get version
+        run: |
+          export VERSION=$(cat version.txt)
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "Version: $VERSION"  
+
+      - name: Build and tag image
+        run: docker build -t $REGISTRY/$IMAGE_NAME:$VERSION -t $REGISTRY/$IMAGE_NAME:latest .
+
+      - name: Push image to GHCR
+        run: docker push $REGISTRY/$IMAGE_NAME --all-tags

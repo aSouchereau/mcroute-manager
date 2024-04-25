@@ -93,6 +93,12 @@ return [
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],
 
+        'demo' => [
+            'driver' => 'sqlite',
+            'database' => env('DEMO_DATABASE', database_path('demo.sqlite')),
+            'foreign_key_constraints' => true,
+        ],
+
     ],
 
     /*

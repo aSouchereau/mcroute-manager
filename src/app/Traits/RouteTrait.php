@@ -15,10 +15,11 @@ trait RouteTrait {
      * @param $host
      * @return PromiseInterface|Response
      */
-    public function addRoute($domainName, $host) {
+    public function addRoute($domainName, $host): PromiseInterface|Response
+    {
         return Http::retry(2, 100)->withHeaders([
             'Content-Type' => 'application/json'
-        ])->post('http://mcrouter:25564/routes', [
+        ])->post('http://' . config('app.mcrouter_host') . ':' . config('app.mcrouter_port') . '/routes', [
             'serverAddress' => $domainName,
             'backend' => $host
         ]);
@@ -29,7 +30,8 @@ trait RouteTrait {
      * @param array $routes
      * @return void
      */
-    public function addManyRoutes(array $routes) {
+    public function addManyRoutes(array $routes): void
+    {
         foreach ($routes as $route) {
             $this->addRoute($route->domain_name, $route->host);
         }
@@ -40,8 +42,9 @@ trait RouteTrait {
      * @param $domainName
      * @return PromiseInterface|Response
      */
-    public function deleteRoute($domainName) {
-       return Http::retry(2, 100)->delete('http://mcrouter:25564/routes/' . $domainName);
+    public function deleteRoute($domainName): PromiseInterface|Response
+    {
+       return Http::retry(2, 100)->delete('http://' . config('app.mcrouter_host') . ':' . config('app.mcrouter_port') . '/routes/' . $domainName);
     }
 
 
@@ -50,7 +53,8 @@ trait RouteTrait {
      * @param Route $route
      * @return void
      */
-    public function toggleRoute(Route $route) {
+    public function toggleRoute(Route $route): void
+    {
         if ($route->enabled) {
             $this->deleteRoute($route->domain_name);
         } else {
@@ -64,7 +68,8 @@ trait RouteTrait {
      * @param $newHost
      * @return void
      */
-    public function replaceRoute($domainName, $newHost) {
+    public function replaceRoute($domainName, $newHost): void
+    {
         $this->deleteRoute($domainName);
         $this->addRoute($domainName, $newHost);
     }
@@ -74,8 +79,9 @@ trait RouteTrait {
      * @param $destination
      * @return PromiseInterface|Response
      */
-    public function setDefaultRoute($destination) {
-        return Http::retry(2, 100)->post('http://mcrouter:25564/defaultRoute', [
+    public function setDefaultRoute($destination): PromiseInterface|Response
+    {
+        return Http::retry(2, 100)->post('http://' . config('app.mcrouter_host') . ':' . config('app.mcrouter_port') . '/defaultRoute', [
             'backend' => $destination
         ]);
     }
@@ -84,7 +90,8 @@ trait RouteTrait {
      * Calls configured mc-router api to get all routes mc-router is aware of
      * @return PromiseInterface|Response
      */
-    public function getActiveRoutes() {
-        return Http::retry(2, 100)->acceptJson()->get('http://mcrouter:25564/routes');
+    public function getActiveRoutes(): PromiseInterface|Response
+    {
+        return Http::retry(2, 100)->acceptJson()->get('http://' . config('app.mcrouter_host') . ':' . config('app.mcrouter_port') . '/routes');
     }
 }

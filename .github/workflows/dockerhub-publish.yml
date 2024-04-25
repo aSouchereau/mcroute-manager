@@ -1,0 +1,32 @@
+name: Docker Hub Publish
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  IMAGE_NAME: asouchereau/mcroute-manager
+
+
+jobs:
+  push_dockerhub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Log in to Docker Hub
+        run: |
+          echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+
+      - name: Get version
+        run: |
+          export VERSION=$(cat ./src/public/VERSION)
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "Version: $VERSION"
+
+      - name: Build and tag image
+        run: docker build -t $IMAGE_NAME:$VERSION -t $IMAGE_NAME:latest .
+
+      - name: Push image to Docker Hub
+        run: docker push $IMAGE_NAME --all-tags
