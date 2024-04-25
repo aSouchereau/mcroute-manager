@@ -1,0 +1,59 @@
+version: '3.4'
+
+services:
+
+
+  # The router that MC Route Manager interfaces with
+  mcrouter:
+    image: itzg/mc-router
+    environment:
+      API_BINDING: ':25564'
+    ports:
+      - '25565:25565'
+      - '25564:25564'
+    networks:
+      - mcrouter
+
+  # MC Route Manager
+  web:
+    # image: TBD
+    ports:
+      - '80:80'
+    restart: always
+    environment:
+      DB_CONNECTION: 'mysql'
+      DB_HOST: 'mysql'
+      DB_PORT: '3306'
+      DB_DATABASE: 'mcroute_manager'
+      DB_USERNAME: 'mcroute_manager'
+      DB_PASSWORD: 'changeme'
+      ROUTER_HOST: 'mcrouter'
+      ROUTER_PORT: '25564'
+    networks:
+      - mcrouter
+    depends_on:
+      - mcrouter
+      - mysql
+
+# Database for MC Route Manager
+  mysql:
+    image: 'mysql/mysql-server:8.0'
+    ports:
+      - '3306:3306'
+    environment:
+      MYSQL_DATABASE: 'mcroute_manager'
+      MYSQL_USER: 'mcroute_manager'
+      MYSQL_PASSWORD: 'changeme'
+    volumes:
+      - mcroute-data:/var/lib/mysql
+    networks:
+      - mcrouter
+
+
+networks:
+  mcrouter:
+    driver: bridge
+
+volumes:
+  mcroute-data:
+    name: mcroute-data

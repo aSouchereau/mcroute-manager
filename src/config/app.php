@@ -140,6 +140,23 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Router Host
+    |--------------------------------------------------------------------------
+    |
+    | Allows MC Route Manager to connect to the router. When running in a docker
+    | network, specify the service name of the router container, otherwise use the
+    | hostname or IP address.
+    |
+    */
+
+    'mcrouter_host' => env('ROUTER_HOST', 'mcrouter'),
+
+    'mcrouter_port' => env('ROUTER_PORT', '25564'),
+
+
+
+    /*
+    |--------------------------------------------------------------------------
     | Maintenance Mode Driver
     |--------------------------------------------------------------------------
     |
