@@ -11,7 +11,7 @@ MC Route Manager is built as a docker container, and requires two other services
 
 ### Docker Compose
 
-~~~
+~~~YAML
 version: '3.4'
 
 services:
