@@ -41,7 +41,7 @@ class LoginController extends Controller
             return redirect('/routes');
         }
 
-        return back()->withErrors(['email' => 'Invalid credentials'])->withInput($request->only('email'));
+        return back()->withErrors(['username' => 'Invalid credentials'])->withInput($request->only('username'));
     }
 
     public function logout(Request $request) : RedirectResponse
