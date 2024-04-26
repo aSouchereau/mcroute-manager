@@ -12,8 +12,8 @@
                 </div>
             @endif
             <div class="mb-3">
-                <label for="email" class="form-label">Email</label>
-                <input type="text" id="email" name="email" value="{{ $demoEmail }}" class="form-control disabled" required readonly/>
+                <label for="username" class="form-label">Username</label>
+                <input type="text" id="username" name="username" value="{{ $demoUsername }}" class="form-control disabled" required readonly/>
             </div>
             <div class="mb-3">
                 <label for="password" class="form-label">Password</label>

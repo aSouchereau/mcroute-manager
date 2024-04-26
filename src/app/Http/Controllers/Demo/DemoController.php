@@ -49,7 +49,7 @@ class DemoController extends Controller
         }
 
         return view('demo.login', [
-            'demoEmail' => 'demo@example.com',
+            'demoUsername' => 'DemoAdmin',
             'demoPassword' => '!DEMOUSER111',
         ]);
     }

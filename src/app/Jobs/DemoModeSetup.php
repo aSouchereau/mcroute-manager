@@ -39,8 +39,7 @@ class DemoModeSetup implements ShouldQueue, ShouldBeUnique
         $migrator->migrate();
         $seedDatabase->seed();
         $registerAdmin->create(
-            'Demo User',
-            'demo@example.com',
+            'DemoAdmin',
             '!DEMOUSER111'
         );
     }

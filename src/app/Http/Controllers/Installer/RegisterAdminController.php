@@ -10,6 +10,8 @@ use App\Http\Requests\RegisterAdminRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
 
 class RegisterAdminController extends Controller
 {
@@ -24,13 +26,12 @@ class RegisterAdminController extends Controller
         return view('installer.register');
     }
 
-    public function register(RegisterAdminRequest $request)
+    public function register(RegisterAdminRequest $request): Redirector|Application|RedirectResponse
     {
         $formData = $request->all();
 
         $response = $this->register->create(
-            $formData['name'],
-            $formData['email'],
+            $formData['username'],
             $formData['password'],
         );
 
