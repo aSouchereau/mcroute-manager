@@ -20,7 +20,7 @@ jobs:
 
       - name: Get version
         run: |
-          export VERSION=$(cat version.txt)
+          export VERSION=$(cat ./src/public/VERSION)
           echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "Version: $VERSION"  
 
