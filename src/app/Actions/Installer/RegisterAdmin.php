@@ -14,12 +14,11 @@ class RegisterAdmin
         $this->results['errors'] = null;
     }
 
-    public function create($name, $email, $password): array
+    public function create($username, $password): array
     {
         if (!$this->checkAdminExists()) {
             User::create([
-                'name'   => $name,
-                'email'  => $email,
+                'username'   => $username,
                 'password' => Hash::make($password),
                 'role' => 'admin'
             ]);
