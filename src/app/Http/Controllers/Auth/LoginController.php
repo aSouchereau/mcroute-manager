@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Middleware\Checks\IsDemoMode;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -32,14 +33,10 @@ class LoginController extends Controller
         return view('auth.login');
     }
 
-    public function login(Request $request): RedirectResponse
+    public function login(LoginRequest $request): RedirectResponse
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
-        ]);
 
-        if (Auth::attempt($credentials, $request->has('remember'))) {
+        if (Auth::attempt($request->only(['username', 'password']), $request->has('remember'))) {
             $request->session()->regenerate();
             return redirect('/routes');
         }
