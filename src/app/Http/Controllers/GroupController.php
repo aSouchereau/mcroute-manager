@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Groups\Toggle as ToggleGroup;
 use App\Http\Requests\GroupRequest;
 use App\Models\Group;
 use Illuminate\Http\RedirectResponse;
@@ -11,6 +12,13 @@ use Illuminate\View\View;
 
 class GroupController extends Controller
 {
+    private ToggleGroup $toggleGroup;
+
+    function __construct(ToggleGroup $toggleGroup)
+    {
+        $this->toggleGroup = $toggleGroup;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -66,6 +74,12 @@ class GroupController extends Controller
     {
         $group = Group::findOrFail($group->id);
         $group->delete();
+
+        return redirect('groups');
+    }
+
+    public function toggle(Group $group) {
+        $this->toggleGroup->toggle($group);
 
         return redirect('groups');
     }
