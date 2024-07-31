@@ -33,11 +33,12 @@
     </td>
 
     <td>
-        @if($group->enabled)
-            enabled
-        @else
-            disabled
-        @endif
+        <div class="toggle-switch-wrapper">
+            <x-toggle-switch
+                routeName="groups.toggle"
+                :resource="$group"
+            />
+        </div>
     </td>
 
     <td>
