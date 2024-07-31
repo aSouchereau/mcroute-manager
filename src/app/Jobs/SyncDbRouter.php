@@ -8,6 +8,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Http\Client\ConnectionException;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Log;
@@ -47,7 +48,7 @@ class SyncDbRouter implements ShouldQueue, ShouldBeUnique
         $addedCount = $this->addMissingRoutes();
         $updatedCount = $this->updateHosts();
         Log::notice('Syncing Complete');
-        Log::info('Removed ' . $removedCount . ' stale routes, added ' . $addedCount . ' missing routes, and updated ' . $updatedCount . 'hosts');
+        Log::info('Removed ' . $removedCount . ' stale routes, added ' . $addedCount . ' missing routes, and updated ' . $updatedCount . ' hosts');
     }
 
     /**

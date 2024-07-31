@@ -11,7 +11,11 @@ class SyncRouterController extends Controller
 {
     public function sync(): RedirectResponse
     {
-        SyncDbRouter::dispatchSync();
-        return redirect("routes");
+        try {
+            SyncDbRouter::dispatchSync();
+        } catch (\Exception $e) {
+            notyf()->addError('Router API: Failed to sync with router - ' . $e->getMessage());
+        }
+        return redirect()->back();
     }
 }
