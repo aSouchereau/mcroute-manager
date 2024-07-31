@@ -19,6 +19,9 @@
     text-align: left;
     border-bottom: var(--table-line-width) solid var(--light-grey);
 }
+.home-resource-table th .header-icon {
+    width: 16px;
+}
 
 .home-resource-table td {
     padding: 0.9rem 1.25rem;

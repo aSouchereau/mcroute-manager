@@ -15,6 +15,10 @@ class Group extends Model
         "image_url"
     ];
 
+    protected $guarded = [
+        "enabled"
+    ];
+
     public function routes() {
         return $this->hasMany(Route::class);
     }

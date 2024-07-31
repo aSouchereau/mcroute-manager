@@ -37,6 +37,7 @@ Route::group(['middleware' => ['install:complete']], function () {
             Route::patch('{group}', [GroupController::class, 'update'])->name('update');
             Route::delete('{group}', [GroupController::class, 'destroy'])->name('delete');
             Route::get('', [GroupController::class, 'index'])->name('index');
+            Route::patch('{group}/status', [GroupController::class, 'toggle'])->name('toggle');
         });
 
         Route::group(['as' => 'routes.', 'prefix' => 'routes', 'middleware' => ['auth', 'is.admin']], function () {

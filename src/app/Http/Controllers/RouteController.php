@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Actions\Routes\Toggle;
 use App\Http\Requests\RouteRequest;
 use App\Models\Group;
 use App\Models\Route;
@@ -13,6 +14,13 @@ use Illuminate\View\View;
 class RouteController extends Controller
 {
     use RouteTrait;
+
+    private Toggle $toggleRoute;
+
+    function __construct(Toggle $toggleRoute)
+    {
+        $this->toggleRoute = $toggleRoute;
+    }
 
     /**
      * Display a listing of the resource.
@@ -87,15 +95,7 @@ class RouteController extends Controller
     {
         $route = Route::findOrFail($route->id);
 
-        try {
-            $this->toggleRoute($route);
-        } catch (HttpClientException $e) {
-            notyf()->addError('Router API: Failed to toggle route status - ' . $e->getMessage());
-            return redirect('routes');
-        }
-
-        $route->enabled = !$route->enabled;
-        $route->save();
+        $this->toggleRoute->toggle($route);
 
         return redirect('routes');
     }
