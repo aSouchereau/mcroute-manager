@@ -47,7 +47,7 @@ class SyncDbRouter implements ShouldQueue, ShouldBeUnique
         $addedCount = $this->addMissingRoutes();
         $updatedCount = $this->updateHosts();
         Log::notice('Syncing Complete');
-        Log::info('Removed ' . $removedCount . ' stale routes, added ' . $addedCount . ' missing routes, and updated ' . $updatedCount . 'hosts');
+        Log::info('Removed ' . $removedCount . ' stale routes, added ' . $addedCount . ' missing routes, and updated ' . $updatedCount . ' hosts');
     }
 
     /**

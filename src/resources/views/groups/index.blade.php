@@ -27,7 +27,15 @@
                     <th>name</th>
                     <th>description</th>
                     <th>routes</th>
-                    <th>enabled</th>
+                    <th>
+                        enabled
+                        <x-icon class="header-icon"
+                                name="info"
+                                data-bs-toggle="tooltip"
+                                data-bs-title="Enable/disable all routes within a group. Group status is non-blocking (you can re-enable individual routes after disabling its group)."
+                                data-bs-placement="bottom"
+                        />
+                    </th>
                     <th>actions</th>
                 </tr>
             </thead>
