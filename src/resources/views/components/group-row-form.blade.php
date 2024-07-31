@@ -33,7 +33,7 @@
     </td>
 
     <td>
-        <div class="toggle-switch-wrapper">
+        <div class="toggle-switch-wrapper" data-bs-toggle="tooltip" data-bs-title="Toggle Group" data-bs-placement="bottom">
             <x-toggle-switch
                 routeName="groups.toggle"
                 :resource="$group"
